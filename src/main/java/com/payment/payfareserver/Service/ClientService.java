@@ -19,9 +19,14 @@ public class ClientService {
         return repository.save(client);
     }
 
-    public Client update(Client client){
+    public Client update(Client client) {
         return repository.save(client);
     }
+
+    public void delete(int clientId) {
+        repository.deleteById(clientId);
+    }
+
     public List<Client> getAllClients() {
         List<Client> clients = new ArrayList<>();
         Streamable.of(repository.findAll())
@@ -32,7 +37,11 @@ public class ClientService {
     public Client getClientById(int clientId) {
         return repository.findClientById(clientId);
     }
-    public Client getClientByUserId(int userId){return repository.findClientByUserId(userId);}
+
+    public Client getClientByUserId(int userId) {
+        return repository.findClientByUserId(userId);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }

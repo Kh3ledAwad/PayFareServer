@@ -18,7 +18,9 @@ public class UserService {
     public User save(User user) {
         return repository.save(user);
     }
-
+    public void delete(int userId){
+        repository.deleteById(userId);
+    }
     public List<User>getAllUsers() {
         List<User> users = new ArrayList<>();
         Streamable.of(repository.findAll())
