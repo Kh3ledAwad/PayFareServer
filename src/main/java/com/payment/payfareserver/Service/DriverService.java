@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DriverService {
+public class DriverDAO {
 
     @Autowired
     private DriverRepository repository;
@@ -35,6 +35,6 @@ public class DriverService {
     }
 
     public Driver getDriverByUserId(int userId) {
-        return repository.findDriverUserId(userId);
+        return repository.findDriverByIdUserId(userId);
     }
 }
