@@ -34,7 +34,4 @@ public class CarService {
         return (int) repository.count();
     }
 
-    public Car getCarByUserId(int userId) {
-        return repository.findCarByIdUserId(userId);
-    }
 }

@@ -34,6 +34,6 @@ public class DriverService {
     }
 
     public Driver getDriverByUserId(int userId) {
-        return repository.findDriverByIdUserId(userId);
+        return repository.findDriverByUserId(userId);
     }
 }

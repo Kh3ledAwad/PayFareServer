@@ -9,5 +9,5 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 
     Car findCarById(int carId);
 
-    Car findCarByIdUserId(int userId);
+
 }
