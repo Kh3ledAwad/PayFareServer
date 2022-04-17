@@ -1,6 +1,6 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.Service.DriverDAO;
+import com.payment.payfareserver.Service.DriverService;
 import com.payment.payfareserver.dto.DriverDTO;
 import com.payment.payfareserver.entity.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +13,16 @@ import java.util.List;
 public class DriverController {
 
     @Autowired
-    private DriverDAO driverDAO;
+    private DriverService driverService;
 
     @GetMapping("/driver/get-all")
     public List<Driver> getAllDrivers() {
-        return driverDAO.getAllDrivers();
+        return driverService.getAllDrivers();
     }
 
     @RequestMapping(value = "/driver/get-by-id", method = RequestMethod.GET)
     public Driver getDriverById(@RequestParam("id") int driverId) {
-        return driverDAO.getDriverById(driverId);
+        return driverService.getDriverById(driverId);
     }
 
     @PostMapping("/driver/save-driver")
