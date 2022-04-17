@@ -35,6 +35,6 @@ public class CarService {
     }
 
     public Car getCarByUserId(int userId) {
-        return repository.findCarUserId(userId);
+        return repository.findCarByIdUserId(userId);
     }
 }
