@@ -49,7 +49,7 @@ public class ClientController {
     @PutMapping("/client")
     public Client update(@RequestBody ClientDTO clientDTO) {
         Client client = new Client();
-        client.setId(client.getId());
+        client.setId(clientDTO.getId());
         User user = userService.getUserById(clientDTO.getUser().getId());
         user.setName(clientDTO.getUser().getName());
         user.setUserName(clientDTO.getUser().getUserName());
