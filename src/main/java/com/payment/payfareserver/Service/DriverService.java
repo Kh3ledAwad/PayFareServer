@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DriverDAO {
-
+public class DriverService {
     @Autowired
     private DriverRepository repository;
 
