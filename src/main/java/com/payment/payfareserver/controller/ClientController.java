@@ -21,7 +21,7 @@ public class ClientController {
     private UserService userService;
     @Autowired
     private TypeService typeService;
-    @GetMapping("/client/get-all")
+    @GetMapping("/client")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
@@ -31,7 +31,7 @@ public class ClientController {
         return clientService.getClientById(clientId);
     }
 
-    @PostMapping("/client/save-client")
+    @PostMapping("/client")
     public Client save(@RequestBody ClientDTO clientDTO) {
         Client client = new Client();
         User user = new User();
@@ -43,5 +43,19 @@ public class ClientController {
         client.setUser(userService.save(user));
         client.setWallet(clientDTO.getWallet());
         return clientService.save(client);
+    }
+    @PutMapping("/client")
+    public Client update(@RequestBody ClientDTO clientDTO) {
+        Client client = new Client();
+        client.setId(client.getId());
+        User user = userService.getUserById(clientDTO.getUser().getId());
+        user.setName(clientDTO.getUser().getName());
+        user.setUserName(clientDTO.getUser().getUserName());
+        user.setPassword(clientDTO.getUser().getPassword());
+        user.setPhone(clientDTO.getUser().getPhone());
+        user.setType (typeService.getTypeById(clientDTO.getUser().getType().getId()));
+        client.setUser(userService.save(user));
+        client.setWallet(clientDTO.getWallet());
+        return clientService.update(client);
     }
 }

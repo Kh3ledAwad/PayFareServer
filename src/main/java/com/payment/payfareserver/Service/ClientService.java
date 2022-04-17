@@ -19,6 +19,9 @@ public class ClientService {
         return repository.save(client);
     }
 
+    public Client update(Client client){
+        return repository.save(client);
+    }
     public List<Client> getAllClients() {
         List<Client> clients = new ArrayList<>();
         Streamable.of(repository.findAll())
