@@ -44,6 +44,4 @@ public class ClientController {
         client.setWallet(clientDTO.getWallet());
         return clientService.save(client);
     }
-// add
-
 }
