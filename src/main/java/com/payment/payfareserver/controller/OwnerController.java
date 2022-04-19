@@ -28,6 +28,9 @@ public class OwnerController {
     @PostMapping("/owner/save-owner")
     public Owner save(@RequestBody OwnerDTO ownerDTO) {
         Owner owner = new Owner();
+        owner.setUsername(ownerDTO.getUsername());
+        owner.setPhone(ownerDTO.getPhone());
+        owner.setPassword(ownerDTO.getPassword());
         return owner;
     }
 
