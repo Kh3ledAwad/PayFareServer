@@ -1,4 +1,5 @@
 package com.payment.payfareserver.controller;
+
 import com.payment.payfareserver.Service.OwnerService;
 import com.payment.payfareserver.dto.OwnerDTO;
 import com.payment.payfareserver.entity.Owner;
@@ -14,7 +15,7 @@ public class OwnerController {
     @Autowired
     private OwnerService ownerService;
 
-    @GetMapping("/owner/get-all")
+    @GetMapping("/owner")
     public List<Owner> getAllOwners() {
         return ownerService.getAllOwners();
     }
@@ -33,5 +34,21 @@ public class OwnerController {
         return ownerService.save(owner);
     }
 
+    @PutMapping("/owner")
+    public Owner update(@RequestBody OwnerDTO ownerDTO) {
+        Owner owner = new Owner();
+        owner.setId(ownerDTO.getId());
+        owner.setPassword(ownerDTO.getPassword());
+        owner.setUsername(ownerDTO.getUsername());
+        owner.setPhone(ownerDTO.getPhone());
+        return ownerService.update(owner);
+    }
+
+    @DeleteMapping("/owner")
+    public Boolean delete(@RequestParam("id") int ownerId) {
+        Owner owner = ownerService.getOwnerById(ownerId);
+        ownerService.delete(owner.getId());
+        return true;
+    }
 
 }

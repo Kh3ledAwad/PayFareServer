@@ -19,6 +19,9 @@ public class OwnerService {
         return repository.save(owner);
     }
 
+    public Owner update (Owner owner){return  repository.save(owner);}
+
+    public void delete (int ownerId){repository.deleteById(ownerId);}
     public List<Owner> getAllOwners() {
         List<Owner> owners = new ArrayList<>();
         Streamable.of(repository.findAll())
