@@ -50,5 +50,4 @@ public class OwnerController {
         ownerService.delete(owner.getId());
         return true;
     }
-
 }
