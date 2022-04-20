@@ -1,5 +1,4 @@
 package com.payment.payfareserver.controller;
-
 import com.payment.payfareserver.Service.OwnerService;
 import com.payment.payfareserver.dto.OwnerDTO;
 import com.payment.payfareserver.entity.Owner;
@@ -25,13 +24,13 @@ public class OwnerController {
         return ownerService.getOwnerById(ownerId);
     }
 
-    @PostMapping("/owner/save-owner")
+    @PostMapping("/owner")
     public Owner save(@RequestBody OwnerDTO ownerDTO) {
         Owner owner = new Owner();
+        owner.setPassword(ownerDTO.getPassword());
         owner.setUsername(ownerDTO.getUsername());
         owner.setPhone(ownerDTO.getPhone());
-        owner.setPassword(ownerDTO.getPassword());
-        return owner;
+        return ownerService.save(owner);
     }
 
 
