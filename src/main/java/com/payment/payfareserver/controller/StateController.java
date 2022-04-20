@@ -15,9 +15,32 @@ public class StateController {
     @Autowired
     private StateService stateService;
 
-    @GetMapping("/state/get-all")
+    @GetMapping("/state")
     public List<State> getAllStates() {
         return stateService.getAllStates();
+    }
+
+    @PostMapping("/state")
+    public State save(@RequestBody StateDTO stateDTO) {
+        State state = new State();
+        state.setStateNameAr(stateDTO.getStateNameAr());
+        state.setStateNameEn(stateDTO.getStateNameEn());
+        return stateService.save(state);
+    }
+    @PutMapping("/state")
+    public State update(@RequestBody StateDTO stateDTO) {
+        State state = new State();
+        state.setId(stateDTO.getId());
+        state.setStateNameAr(stateDTO.getStateNameAr());
+        state.setStateNameEn(stateDTO.getStateNameEn());
+        return stateService.update(state);
+    }
+
+    @DeleteMapping("/state")
+    public Boolean delete(@RequestParam("id") int stateId) {
+        State state = stateService.getStateById(stateId);
+        stateService.delete(stateId);
+        return true;
     }
 
     @RequestMapping(value = "/state/get-by-id", method = RequestMethod.GET)
@@ -25,11 +48,14 @@ public class StateController {
         return stateService.getStateById(stateId);
     }
 
-    @PostMapping("/state/save-state")
-    public State save(@RequestBody StateDTO stateDTO) {
-        State state = new State();
-        return state;
+    @RequestMapping(value = "/state/get-by-name-arabic", method = RequestMethod.GET)
+    public State getStateByStateNameAr(@RequestParam("stateNameAr") String stateNameAr) {
+        return stateService.getStateByStateNameAr(stateNameAr);
     }
 
+    @RequestMapping(value = "/state/get-by-name-english", method = RequestMethod.GET)
+    public State getStateByStateNameEn(@RequestParam("stateNameEn") String stateNameEn) {
+        return stateService.getStateByStateNameEn(stateNameEn);
+    }
 
 }

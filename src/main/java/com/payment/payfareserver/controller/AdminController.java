@@ -15,20 +15,21 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/admin/get-all")
+    @GetMapping("/admin")
     public List<Admin> getAllAdmins() {
         return adminService.getAllAdmins();
+    }
+
+
+    @PostMapping("/admin")
+    public Admin save(@RequestBody AdminDTO adminDTO) {
+        Admin admin = new Admin();
+        return admin;
     }
 
     @RequestMapping(value = "/admin/get-by-id", method = RequestMethod.GET)
     public Admin getAdminById(@RequestParam("id") int adminId) {
         return adminService.getAdminById(adminId);
-    }
-
-    @PostMapping("/admin/save-admin")
-    public Admin save(@RequestBody AdminDTO adminDTO) {
-        Admin admin = new Admin();
-        return admin;
     }
 
 }

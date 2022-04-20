@@ -19,6 +19,14 @@ public class StateService {
         return repository.save(state);
     }
 
+    public State update(State state) {
+        return repository.save(state);
+    }
+
+    public void delete(int stateId) {
+        repository.deleteById(stateId);
+    }
+
     public List<State> getAllStates() {
         List<State> states = new ArrayList<>();
         Streamable.of(repository.findAll())
@@ -30,11 +38,16 @@ public class StateService {
         return repository.findStateById(stateId);
     }
 
-    public int getCount() {
-        return (int) repository.count();
+
+    public State getStateByStateNameAr(String stateNameAr) {
+        return repository.findStateByStateNameAr(stateNameAr);
     }
 
-    public State getStateByUserId(int userId) {
-        return repository.findStateUserId(userId);
+    public State getStateByStateNameEn(String stateNameEn) {
+        return repository.findStateByStateNameEn(stateNameEn);
+    }
+
+    public int getCount() {
+        return (int) repository.count();
     }
 }

@@ -30,6 +30,5 @@ public class CarController {
         Car car = new Car();
         return car;
     }
-//new 
 
 }
