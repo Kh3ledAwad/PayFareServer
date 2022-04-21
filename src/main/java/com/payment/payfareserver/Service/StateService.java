@@ -19,13 +19,6 @@ public class StateService {
         return repository.save(state);
     }
 
-    public State update(State state) {
-        return repository.save(state);
-    }
-
-    public void delete(int stateId) {
-        repository.deleteById(stateId);
-    }
 
     public List<State> getAllStates() {
         List<State> states = new ArrayList<>();

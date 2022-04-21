@@ -27,21 +27,6 @@ public class StateController {
         state.setStateNameEn(stateDTO.getStateNameEn());
         return stateService.save(state);
     }
-    @PutMapping("/state")
-    public State update(@RequestBody StateDTO stateDTO) {
-        State state = new State();
-        state.setId(stateDTO.getId());
-        state.setStateNameAr(stateDTO.getStateNameAr());
-        state.setStateNameEn(stateDTO.getStateNameEn());
-        return stateService.update(state);
-    }
-
-    @DeleteMapping("/state")
-    public Boolean delete(@RequestParam("id") int stateId) {
-        State state = stateService.getStateById(stateId);
-        stateService.delete(stateId);
-        return true;
-    }
 
     @RequestMapping(value = "/state/get-by-id", method = RequestMethod.GET)
     public State getStateById(@RequestParam("id") int stateId) {

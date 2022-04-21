@@ -9,5 +9,9 @@ public interface CityRepository extends JpaRepository<City, Integer> {
 
     City findCityById(int cityId);
 
-    //City findCityByIdUserId(int userId);
+    City findCityByStateId(int stateId);
+
+    City findCityByCityNameAr(String cityNameAr);
+
+    City findCityByCityNameEn(String cityNameEn);
 }
