@@ -9,5 +9,5 @@ public interface StationRepository extends JpaRepository<Station, Integer> {
 
     Station findStationById(int stationId);
 
-    Station findStationByIdUserId(int userId);
+    //Station findStationByIdUserId(int userId);
 }

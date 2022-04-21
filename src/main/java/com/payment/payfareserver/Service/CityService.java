@@ -34,7 +34,7 @@ public class CityService {
         return (int) repository.count();
     }
 
-    public City getCityByUserId(int userId) {
-        return repository.findCityUserId(userId);
-    }
+//    public City getCityByUserId(int userId) {
+//        return repository.findCityByIdUserId(userId);
+//    }
 }

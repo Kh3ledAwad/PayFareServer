@@ -34,7 +34,7 @@ public class StationService {
         return (int) repository.count();
     }
 
-    public Station getStationByUserId(int userId) {
-        return repository.findStationUserId(userId);
-    }
+//    public Station getStationByUserId(int userId) {
+//        return repository.findStationByIdUserId(userId);
+//    }
 }

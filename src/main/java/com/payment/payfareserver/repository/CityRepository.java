@@ -9,5 +9,5 @@ public interface CityRepository extends JpaRepository<City, Integer> {
 
     City findCityById(int cityId);
 
-    City findCityByIdUserId(int userId);
+    //City findCityByIdUserId(int userId);
 }

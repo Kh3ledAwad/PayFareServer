@@ -9,5 +9,5 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
     Admin findAdminById(int adminId);
 
-    Admin findAdminByIdUserId(int userId);
+    Admin findAdminByUserId(int userId);
 }

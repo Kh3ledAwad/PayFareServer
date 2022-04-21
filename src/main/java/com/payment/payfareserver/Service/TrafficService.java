@@ -34,7 +34,7 @@ public class TrafficService {
         return (int) repository.count();
     }
 
-    public Traffic getTrafficByUserId(int userId) {
-        return repository.findTrafficUserId(userId);
-    }
+//    public Traffic getTrafficByUserId(int userId) {
+//        return repository.findTrafficByIdUserId(userId);
+//    }
 }

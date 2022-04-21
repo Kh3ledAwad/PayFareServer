@@ -9,5 +9,5 @@ public interface TrafficRepository extends JpaRepository<Traffic, Integer> {
 
     Traffic findTrafficById(int trafficId);
 
-    Traffic findTrafficByIdUserId(int userId);
+   // Traffic findTrafficByIdUserId(int userId);
 }

@@ -34,7 +34,7 @@ public class AdminService {
         return (int) repository.count();
     }
 
-    public Admin getAdminByUserId(int userId) {
-        return repository.findAdminUserId(userId);
-    }
+//    public Admin getAdminByUserId(int userId) {
+//        return repository.findAdminByIdUserId(userId);
+//    }
 }
