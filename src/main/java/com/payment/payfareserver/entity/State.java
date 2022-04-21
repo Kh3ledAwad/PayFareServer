@@ -1,6 +1,8 @@
 package com.payment.payfareserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -21,6 +23,7 @@ public class State {
     private String stateNameEn;
 
     @OneToMany(mappedBy = "state")
+    @Fetch(FetchMode.JOIN)
     @JsonBackReference
     private Set<City> cities = new LinkedHashSet<>();
 

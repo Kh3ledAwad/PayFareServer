@@ -18,8 +18,7 @@ public class CityService {
     public City save(City city) {
         return repository.save(city);
     }
-    public City update(City city){return repository.save(city);}
-    public void delete(int cityId){repository.deleteById(cityId);}
+
     public List<City> getAllCitys() {
         List<City> citys = new ArrayList<>();
         Streamable.of(repository.findAll())
@@ -32,6 +31,10 @@ public class CityService {
     }
     public City getCityByNameAr(String cityNameAr){return repository.findCityByCityNameAr(cityNameAr);}
     public City getCityByNameEn(String cityNameEn){return repository.findCityByCityNameEn(cityNameEn);}
+
+    public List<City>getCitiesByStateId(int stateId){return repository.findCitiesByStateId(stateId);}
+
+
     public int getCount() {
         return (int) repository.count();
     }

@@ -2,6 +2,8 @@ package com.payment.payfareserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -17,6 +19,7 @@ public class City {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "state_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     @JsonManagedReference
     private State state;
 
