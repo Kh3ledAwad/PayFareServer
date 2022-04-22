@@ -19,9 +19,9 @@ public class Trip {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "tra_id", nullable = false)
+    @JoinColumn(name = "traffic_id", nullable = false)
     @JsonManagedReference
-    private Traffic tra;
+    private Traffic traffic;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "admin_id", nullable = false)
@@ -49,14 +49,14 @@ public class Trip {
 
     @OneToMany(mappedBy = "trip")
     @JsonBackReference
-    private Set<RidesHistory> rideshistories = new LinkedHashSet<>();
+    private Set<RidesHistory> ridesHistories = new LinkedHashSet<>();
     @JsonBackReference
-    public Set<RidesHistory> getRideshistories() {
-        return rideshistories;
+    public Set<RidesHistory> getRidesHistories() {
+        return ridesHistories;
     }
 
-    public void setRideshistories(Set<RidesHistory> rideshistories) {
-        this.rideshistories = rideshistories;
+    public void setRidesHistories(Set<RidesHistory> ridesHistories) {
+        this.ridesHistories = ridesHistories;
     }
 
     public BigDecimal getPrice() {
@@ -107,12 +107,12 @@ public class Trip {
         this.admin = admin;
     }
 
-    public Traffic getTra() {
-        return tra;
+    public Traffic getTraffic() {
+        return traffic;
     }
 
-    public void setTra(Traffic tra) {
-        this.tra = tra;
+    public void setTraffic(Traffic tra) {
+        this.traffic = tra;
     }
 
     public Integer getId() {

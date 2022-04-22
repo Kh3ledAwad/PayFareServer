@@ -21,7 +21,7 @@ public class Admin {
     private Station station;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false,unique = true)
     @JsonManagedReference
     private User user;
 

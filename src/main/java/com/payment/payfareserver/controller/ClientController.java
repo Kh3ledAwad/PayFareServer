@@ -40,7 +40,7 @@ public class ClientController {
         user.setUserName(clientDTO.getUser().getUserName());
         user.setPassword(clientDTO.getUser().getPassword());
         user.setPhone(clientDTO.getUser().getPhone());
-        user.setType(typeService.getTypeById(clientDTO.getUser().getType().getId()));
+        user.setType(typeService.getTypeById(3));
         client.setUser(userService.save(user));
         client.setWallet(clientDTO.getWallet());
         return clientService.save(client);

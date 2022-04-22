@@ -19,7 +19,7 @@ public class Client {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false,unique = true)
     @Fetch(FetchMode.JOIN)
     @JsonManagedReference
     private User user;
@@ -30,14 +30,14 @@ public class Client {
     @OneToMany(mappedBy = "client")
     @Fetch(FetchMode.JOIN)
     @JsonBackReference
-    private Set<RidesHistory> rideshistories = new LinkedHashSet<>();
+    private Set<RidesHistory> ridesHistories = new LinkedHashSet<>();
 
-    public Set<RidesHistory> getRideshistories() {
-        return rideshistories;
+    public Set<RidesHistory> getRidesHistories() {
+        return ridesHistories;
     }
 
-    public void setRideshistories(Set<RidesHistory> rideshistories) {
-        this.rideshistories = rideshistories;
+    public void setRidesHistories(Set<RidesHistory> ridesHistories) {
+        this.ridesHistories = ridesHistories;
     }
 
     public BigDecimal getWallet() {

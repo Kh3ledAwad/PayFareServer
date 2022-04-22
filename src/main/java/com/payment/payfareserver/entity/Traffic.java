@@ -30,7 +30,7 @@ public class Traffic {
     @Column(name = "`to`", nullable = false, length = 225)
     private String to;
 
-    @OneToMany(mappedBy = "tra")
+    @OneToMany(mappedBy = "traffic")
     @JsonBackReference
     private Set<Trip> trips = new LinkedHashSet<>();
 

@@ -17,10 +17,10 @@ public class Owner {
     @Column(name = "password", nullable = false, length = 225)
     private String password;
 
-    @Column(name = "phone", nullable = false, length = 225)
+    @Column(name = "phone", nullable = false, length = 225,unique = true)
     private String phone;
 
-    @Column(name = "username", nullable = false, length = 225)
+    @Column(name = "username", nullable = false, length = 225,unique = true)
     private String username;
 
     @OneToMany(mappedBy = "owner")

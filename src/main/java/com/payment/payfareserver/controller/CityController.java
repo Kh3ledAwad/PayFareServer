@@ -8,7 +8,6 @@ import com.payment.payfareserver.entity.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -43,9 +42,8 @@ public class CityController {
     }
 
     @RequestMapping(value = "/city/get-all-by-state-id", method = RequestMethod.GET)
-    public List<City> getCitiesByStateId(@RequestParam("id") int stateId)
-    {
-        State state =stateService.getStateById(stateId);
+    public List<City> getCitiesByStateId(@RequestParam("id") int stateId) {
+        State state = stateService.getStateById(stateId);
         return cityService.getCitiesByStateId(state.getId());
     }
 

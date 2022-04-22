@@ -21,18 +21,15 @@ public class Driver {
     @JsonManagedReference
     private Car car;
 
-    @Column(name = "driver_code", nullable = false, length = 225)
+    @Column(name = "driver_code", nullable = false, length = 225,unique = true)
     private String driverCode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false,unique = true)
     @JsonManagedReference
     private User user;
 
-    @Column(name = "car_code", nullable = false, length = 225)
-    private String carCode;
-
-    @Column(name = "lice_num", nullable = false, length = 225)
+    @Column(name = "lice_num", nullable = false, length = 225,unique = true)
     private String liceNum;
 
     @Column(name = "wallet", nullable = false, precision = 15, scale = 2)
@@ -64,14 +61,6 @@ public class Driver {
 
     public void setLiceNum(String liceNum) {
         this.liceNum = liceNum;
-    }
-
-    public String getCarCode() {
-        return carCode;
-    }
-
-    public void setCarCode(String carCode) {
-        this.carCode = carCode;
     }
 
     public User getUser() {

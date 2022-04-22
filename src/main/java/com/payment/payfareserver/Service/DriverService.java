@@ -18,6 +18,14 @@ public class DriverService {
         return repository.save(driver);
     }
 
+    public Driver update(Driver driver) {
+        return repository.save(driver);
+    }
+
+    public void delete(int driverId) {
+        repository.deleteById(driverId);
+    }
+
     public List<Driver> getAllDrivers() {
         List<Driver> drivers = new ArrayList<>();
         Streamable.of(repository.findAll())

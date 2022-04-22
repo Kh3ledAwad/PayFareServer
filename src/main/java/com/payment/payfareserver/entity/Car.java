@@ -15,7 +15,7 @@ public class Car {
     @Column(name = "car_id", nullable = false)
     private Integer id;
 
-    @Column(name = "car_code", nullable = false, length = 225)
+    @Column(name = "car_code", nullable = false, length = 225,unique = true)
     private String carCode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -33,13 +33,13 @@ public class Car {
     @JsonManagedReference
     private Owner owner;
 
-    @Column(name = "car_platenum", nullable = false, length = 225)
-    private String carPlatenum;
+    @Column(name = "car_plate_num", nullable = false, length = 225,unique = true)
+    private String carPlateNum;
 
     @Column(name = "car_capacity", nullable = false)
     private Integer carCapacity;
 
-    @Column(name = "qr_code", nullable = false, length = 225)
+    @Column(name = "qr_code", nullable = false, length = 225,unique = true)
     private String qrCode;
 
     @OneToMany(mappedBy = "car")
@@ -90,12 +90,12 @@ public class Car {
         this.owner = owner;
     }
 
-    public String getCarPlatenum() {
-        return carPlatenum;
+    public String getCarPlateNum() {
+        return carPlateNum;
     }
 
-    public void setCarPlatenum(String carPlatenum) {
-        this.carPlatenum = carPlatenum;
+    public void setCarPlateNum(String carPlatenum) {
+        this.carPlateNum = carPlatenum;
     }
 
     public Integer getCarCapacity() {
