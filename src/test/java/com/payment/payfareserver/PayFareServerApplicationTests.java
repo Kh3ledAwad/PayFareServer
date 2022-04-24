@@ -19,16 +19,16 @@ import java.util.List;
 
 @SpringBootTest
 class PayFareServerApplicationTests {
-    @Autowired
-    ClientService clientService;
-    @Autowired
-    UserService userService;
-    @Autowired
-    TypeService typeService;
-
-    @Test
-    void contextLoads() {
-    }
+//    @Autowired
+//    ClientService clientService;
+//    @Autowired
+//    UserService userService;
+//    @Autowired
+//    TypeService typeService;
+//
+//    @Test
+//    void contextLoads() {
+//    }
 
   /*  @Test
     void addClient() {
@@ -57,9 +57,9 @@ class PayFareServerApplicationTests {
         System.out.println(client);
     }*/
 
-    @Test
-    void getAllUserByTypeId(){
-        List<User> users = userService.getUsersByTypeId(3);
-        System.out.println(users);
-    }
+//    @Test
+//    void getAllUserByTypeId(){
+//        List<User> users = userService.getUsersByTypeId(3);
+//        System.out.println(users);
+//    }
 }
