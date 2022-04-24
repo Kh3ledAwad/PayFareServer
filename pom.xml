@@ -82,11 +82,5 @@
             </plugin>
         </plugins>
     </build>
-    <appSettings>
-        <property>
-            <name>JAVA_OPTS</name>
-            <value>-Dserver.port=80 -Dsite.root=/usr/local/appservice/parkingpage/ROOT</value>
-        </property>
-    </appSettings>
 
 </project>
