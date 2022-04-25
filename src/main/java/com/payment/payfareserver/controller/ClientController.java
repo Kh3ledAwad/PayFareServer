@@ -22,7 +22,7 @@ public class ClientController {
     @Autowired
     private TypeService typeService;
 
-    @GetMapping("/client")
+    @GetMapping("/clientt")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
