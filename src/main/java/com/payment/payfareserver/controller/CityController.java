@@ -19,7 +19,7 @@ public class CityController {
     @Autowired
     private StateService stateService;
 
-    @GetMapping("/city")
+    @GetMapping("/cityy")
     public List<City> getAllCitys() {
         return cityService.getAllCitys();
     }
