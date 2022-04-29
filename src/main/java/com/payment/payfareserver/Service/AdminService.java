@@ -1,4 +1,4 @@
-package com.payment.payfareserver.Service;
+package com.payment.payfareserver.service;
 
 import com.payment.payfareserver.entity.Admin;
 import com.payment.payfareserver.repository.AdminRepository;
@@ -18,7 +18,12 @@ public class AdminService {
     public Admin save(Admin admin) {
         return repository.save(admin);
     }
-
+    public Admin update(Admin admin) {
+        return repository.save(admin);
+    }
+    public void delete(int adminId) {
+        repository.deleteById(adminId);
+    }
     public List<Admin> getAllAdmins() {
         List<Admin> admins = new ArrayList<>();
         Streamable.of(repository.findAll())
@@ -30,11 +35,11 @@ public class AdminService {
         return repository.findAdminById(adminId);
     }
 
+    public Admin getAdminByUserId(int userId) {
+        return repository.findAdminByUserId(userId);
+    }
     public int getCount() {
         return (int) repository.count();
     }
 
-//    public Admin getAdminByUserId(int userId) {
-//        return repository.findAdminByIdUserId(userId);
-//    }
 }

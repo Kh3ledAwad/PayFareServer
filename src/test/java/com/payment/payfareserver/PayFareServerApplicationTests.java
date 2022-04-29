@@ -1,21 +1,6 @@
 package com.payment.payfareserver;
 
-import com.payment.payfareserver.Service.ClientService;
-import com.payment.payfareserver.Service.TypeService;
-import com.payment.payfareserver.Service.UserService;
-import com.payment.payfareserver.dto.ClientDTO;
-import com.payment.payfareserver.dto.TypeDTO;
-import com.payment.payfareserver.dto.UserDTO;
-import com.payment.payfareserver.entity.Client;
-import com.payment.payfareserver.entity.Type;
-import com.payment.payfareserver.entity.User;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootTest
 class PayFareServerApplicationTests {

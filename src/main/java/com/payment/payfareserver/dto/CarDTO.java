@@ -1,6 +1,5 @@
 package com.payment.payfareserver.dto;
 
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,19 +9,19 @@ public class CarDTO {
     private  StationDTO mainStation;
     private  TrafficDTO traffic;
     private  OwnerDTO owner;
-    private  String carPlatenum;
+    private  String carPlateNum;
     private  Integer carCapacity;
     private  String qrCode;
     private  Set<TripDTO> trips;
     private  Set<DriverDTO> drivers;
 
-    public CarDTO(Integer id, String carCode, StationDTO mainStation, TrafficDTO traffic, OwnerDTO owner, String carPlatenum, Integer carCapacity, String qrCode, Set<TripDTO> trips, Set<DriverDTO> drivers) {
+    public CarDTO(Integer id, String carCode, StationDTO mainStation, TrafficDTO traffic, OwnerDTO owner, String carPlateNum, Integer carCapacity, String qrCode, Set<TripDTO> trips, Set<DriverDTO> drivers) {
         this.id = id;
         this.carCode = carCode;
         this.mainStation = mainStation;
         this.traffic = traffic;
         this.owner = owner;
-        this.carPlatenum = carPlatenum;
+        this.carPlateNum = carPlateNum;
         this.carCapacity = carCapacity;
         this.qrCode = qrCode;
         this.trips = trips;
@@ -52,8 +51,8 @@ public class CarDTO {
         this.owner = owner;
     }
 
-    public void setCarPlatenum(String carPlatenum) {
-        this.carPlatenum = carPlatenum;
+    public void setCarPlateNum(String carPlateNum) {
+        this.carPlateNum = carPlateNum;
     }
 
     public void setCarCapacity(Integer carCapacity) {
@@ -92,8 +91,8 @@ public class CarDTO {
         return owner;
     }
 
-    public String getCarPlatenum() {
-        return carPlatenum;
+    public String getCarPlateNum() {
+        return carPlateNum;
     }
 
     public Integer getCarCapacity() {
@@ -122,7 +121,7 @@ public class CarDTO {
                 Objects.equals(this.mainStation, entity.mainStation) &&
                 Objects.equals(this.traffic, entity.traffic) &&
                 Objects.equals(this.owner, entity.owner) &&
-                Objects.equals(this.carPlatenum, entity.carPlatenum) &&
+                Objects.equals(this.carPlateNum, entity.carPlateNum) &&
                 Objects.equals(this.carCapacity, entity.carCapacity) &&
                 Objects.equals(this.qrCode, entity.qrCode) &&
                 Objects.equals(this.trips, entity.trips) &&
@@ -131,7 +130,7 @@ public class CarDTO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, carCode, mainStation, traffic, owner, carPlatenum, carCapacity, qrCode, trips, drivers);
+        return Objects.hash(id, carCode, mainStation, traffic, owner, carPlateNum, carCapacity, qrCode, trips, drivers);
     }
 
     @Override
@@ -142,7 +141,7 @@ public class CarDTO {
                 "mainStation = " + mainStation + ", " +
                 "traffic = " + traffic + ", " +
                 "owner = " + owner + ", " +
-                "carPlatenum = " + carPlatenum + ", " +
+                "carPlatenum = " + carPlateNum + ", " +
                 "carCapacity = " + carCapacity + ", " +
                 "qrCode = " + qrCode + ", " +
                 "trips = " + trips + ", " +

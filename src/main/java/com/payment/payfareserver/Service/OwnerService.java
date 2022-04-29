@@ -1,4 +1,4 @@
-package com.payment.payfareserver.Service;
+package com.payment.payfareserver.service;
 
 import com.payment.payfareserver.entity.Owner;
 import com.payment.payfareserver.repository.OwnerRepository;

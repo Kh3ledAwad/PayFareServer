@@ -2,6 +2,8 @@ package com.payment.payfareserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -17,8 +19,9 @@ public class Traffic {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "station_id")
+    @JoinColumn(name = "station_id",nullable = false)
     @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
     private Station station;
 
     @Column(name = "price", nullable = false, precision = 15, scale = 2)
@@ -32,10 +35,12 @@ public class Traffic {
 
     @OneToMany(mappedBy = "traffic")
     @JsonBackReference
+    @Fetch(FetchMode.JOIN)
     private Set<Trip> trips = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "traffic")
     @JsonBackReference
+    @Fetch(FetchMode.JOIN)
     private Set<Car> cars = new LinkedHashSet<>();
 
     public Set<Car> getCars() {

@@ -18,7 +18,6 @@ public class Type {
 
     @Column(name = "name", nullable = false, length = 225)
     private String name;
-
     @OneToMany(mappedBy = "type")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)

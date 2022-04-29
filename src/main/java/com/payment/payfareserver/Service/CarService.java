@@ -1,4 +1,4 @@
-package com.payment.payfareserver.Service;
+package com.payment.payfareserver.service;
 
 import com.payment.payfareserver.entity.Car;
 import com.payment.payfareserver.repository.CarRepository;
@@ -17,6 +17,37 @@ public class CarService {
 
     public Car save(Car car) {
         return repository.save(car);
+    }
+
+    public Car update(Car car) {
+        return repository.save(car);
+    }
+
+    public Boolean delete(int carId) {
+        repository.deleteById(carId);
+        return true;
+    }
+
+    public Car getCarByCarCode(int carCode) {
+
+        return repository.findCarByCarCode(carCode);
+    }
+
+    public Car getCarByMainStationId(int mainStationId) {
+
+        return repository.findCarByMainStationId(mainStationId);
+    }
+
+    public Car getCarByTrafficId(int trafficId) {
+        return repository.findCarByTrafficId(trafficId);
+    }
+
+    public Car getCarByQrCode(String qrCode) {
+        return repository.findCarByQrCode(qrCode);
+    }
+
+    public List<Car> getCarsByOwnerId(int ownerId) {
+        return repository.findCarsByOwnerId(ownerId);
     }
 
     public List<Car> getAllCars() {

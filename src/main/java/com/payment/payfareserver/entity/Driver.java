@@ -2,6 +2,8 @@ package com.payment.payfareserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,6 +21,7 @@ public class Driver {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id")
     @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
     private Car car;
 
     @Column(name = "driver_code", nullable = false, length = 225,unique = true)
@@ -27,6 +30,7 @@ public class Driver {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false,unique = true)
     @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
     private User user;
 
     @Column(name = "lice_num", nullable = false, length = 225,unique = true)
@@ -37,6 +41,7 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     @JsonBackReference
+    @Fetch(FetchMode.JOIN)
     private Set<Trip> trips = new LinkedHashSet<>();
 
     public Set<Trip> getTrips() {

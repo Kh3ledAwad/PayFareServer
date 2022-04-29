@@ -1,7 +1,7 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.Service.CityService;
-import com.payment.payfareserver.Service.StateService;
+import com.payment.payfareserver.service.CityService;
+import com.payment.payfareserver.service.StateService;
 import com.payment.payfareserver.dto.CityDTO;
 import com.payment.payfareserver.entity.City;
 import com.payment.payfareserver.entity.State;
@@ -19,7 +19,7 @@ public class CityController {
     @Autowired
     private StateService stateService;
 
-    @GetMapping("/cityy")
+    @GetMapping("/city")
     public List<City> getAllCitys() {
         return cityService.getAllCitys();
     }

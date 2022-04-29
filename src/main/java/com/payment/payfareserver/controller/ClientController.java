@@ -1,8 +1,8 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.Service.ClientService;
-import com.payment.payfareserver.Service.TypeService;
-import com.payment.payfareserver.Service.UserService;
+import com.payment.payfareserver.service.ClientService;
+import com.payment.payfareserver.service.TypeService;
+import com.payment.payfareserver.service.UserService;
 import com.payment.payfareserver.dto.ClientDTO;
 import com.payment.payfareserver.entity.Client;
 import com.payment.payfareserver.entity.User;
@@ -22,7 +22,7 @@ public class ClientController {
     @Autowired
     private TypeService typeService;
 
-    @GetMapping("/clientt")
+    @GetMapping("/client")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }

@@ -1,4 +1,4 @@
-package com.payment.payfareserver.Service;
+package com.payment.payfareserver.service;
 
 import com.payment.payfareserver.entity.Station;
 import com.payment.payfareserver.repository.StationRepository;
@@ -30,11 +30,12 @@ public class StationService {
         return repository.findStationById(stationId);
     }
 
+    public List<Station> getStationsByCityId(int cityId) {
+        return repository.findStationsByCityId(cityId);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }
 
-//    public Station getStationByUserId(int userId) {
-//        return repository.findStationByIdUserId(userId);
-//    }
 }

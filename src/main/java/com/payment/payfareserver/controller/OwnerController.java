@@ -1,6 +1,6 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.Service.OwnerService;
+import com.payment.payfareserver.service.OwnerService;
 import com.payment.payfareserver.dto.OwnerDTO;
 import com.payment.payfareserver.entity.Owner;
 import org.springframework.beans.factory.annotation.Autowired;

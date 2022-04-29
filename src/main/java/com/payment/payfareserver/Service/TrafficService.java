@@ -1,4 +1,4 @@
-package com.payment.payfareserver.Service;
+package com.payment.payfareserver.service;
 
 import com.payment.payfareserver.entity.Traffic;
 import com.payment.payfareserver.repository.TrafficRepository;
@@ -19,6 +19,10 @@ public class TrafficService {
         return repository.save(traffic);
     }
 
+    public Traffic update(Traffic traffic) {
+        return repository.save(traffic);
+    }
+
     public List<Traffic> getAllTraffics() {
         List<Traffic> traffics = new ArrayList<>();
         Streamable.of(repository.findAll())
@@ -30,11 +34,11 @@ public class TrafficService {
         return repository.findTrafficById(trafficId);
     }
 
+    public List<Traffic> getTrafficsByStationId(int stationId) {
+        return repository.findAllByStationId(stationId);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }
-
-//    public Traffic getTrafficByUserId(int userId) {
-//        return repository.findTrafficByIdUserId(userId);
-//    }
 }

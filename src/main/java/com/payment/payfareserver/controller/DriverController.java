@@ -1,10 +1,9 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.Service.DriverService;
-import com.payment.payfareserver.Service.TypeService;
-import com.payment.payfareserver.Service.UserService;
+import com.payment.payfareserver.service.DriverService;
+import com.payment.payfareserver.service.TypeService;
+import com.payment.payfareserver.service.UserService;
 import com.payment.payfareserver.dto.DriverDTO;
-import com.payment.payfareserver.entity.Car;
 import com.payment.payfareserver.entity.Driver;
 import com.payment.payfareserver.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;

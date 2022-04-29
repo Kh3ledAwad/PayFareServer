@@ -1,6 +1,8 @@
 package com.payment.payfareserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 
@@ -15,11 +17,13 @@ public class RidesHistory {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_id")
     @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
     private Trip trip;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
     private Client client;
 
     public Client getClient() {
