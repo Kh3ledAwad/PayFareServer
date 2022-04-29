@@ -10,18 +10,6 @@ import java.util.List;
 
 @SpringBootTest
 public class CityTest {
-    @Autowired
-    CityService cityService;
-
-    @Test
-    void getAllCity (){
-        List <City> cityList = cityService.getAllCitys();
-        for (City city : cityList){
-            System.out.println(city.getCityNameAr());
-            System.out.println(city.getCityNameEn());
-            System.out.println("------------------");
-        }
-
-    }
+  
 
 }
