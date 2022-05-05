@@ -14,7 +14,6 @@ public class AdminService {
 
     @Autowired
     private AdminRepository repository;
-
     public Admin save(Admin admin) {
         return repository.save(admin);
     }

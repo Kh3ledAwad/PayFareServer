@@ -13,11 +13,11 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 
     List<Car> findCarsByOwnerId(int ownerId);
 
-    Car findCarByCarCode(int carCode);
+    Car findCarByCarCode(String carCode);
 
-    Car findCarByMainStationId(int mainStationId);
+    List<Car> findCarByMainStationId(int mainStationId);
 
-    Car findCarByTrafficId(int trafficId);
+    List<Car> findCarsByTrafficId(int trafficId);
 
     Car findCarByQrCode(String qrCode);
 }

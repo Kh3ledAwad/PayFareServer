@@ -35,6 +35,31 @@ public class CarController {
         return carService.getCarById(carId);
     }
 
+    @RequestMapping(value = "/car/get-by-car-code", method = RequestMethod.GET)
+    public Car getCarByCarCode(@RequestParam("car_code") String carCode) {
+        return carService.getCarByCarCode(carCode);
+    }
+
+    @RequestMapping(value = "/station/cars", method = RequestMethod.GET)
+    public  List<Car> getCarByMainStationId(@RequestParam("station_id") int stationId) {
+        return carService.getCarByMainStationId(stationId);
+    }
+
+    @RequestMapping(value = "/traffic/cars", method = RequestMethod.GET)
+    public List<Car> getCarByTrafficId(@RequestParam("traffic_id") int trafficId) {
+        return carService.getCarsByTrafficId(trafficId);
+    }
+
+    @RequestMapping(value = "/car/get-by-qr", method = RequestMethod.GET)
+    public Car getCarByQrCode(@RequestParam("qr_code") String qrCode) {
+        return carService.getCarByQrCode(qrCode);
+    }
+
+    @RequestMapping(value = "/owner/cars", method = RequestMethod.GET)
+    public List<Car> getAllCarsByOwnerId(@RequestParam("owner_id") int ownerId) {
+        return carService.getCarsByOwnerId(ownerId);
+    }
+
     @PostMapping("/car")
     public Car save(@RequestBody CarDTO carDTO) {
         Random rand = new Random();
@@ -49,6 +74,13 @@ public class CarController {
         car.setQrCode(carDTO.getQrCode());
         car.setCarPlateNum(carDTO.getCarPlateNum());
         return carService.save(car);
+    }
+
+    @PutMapping("/car")
+    public Car update(@RequestBody CarDTO carDTO) {
+        Car car = new Car();
+        car.setId(carDTO.getId());
+        return carService.update(car);
     }
 
 }

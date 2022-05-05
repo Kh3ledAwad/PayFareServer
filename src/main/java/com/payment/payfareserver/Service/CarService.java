@@ -28,18 +28,18 @@ public class CarService {
         return true;
     }
 
-    public Car getCarByCarCode(int carCode) {
+    public Car getCarByCarCode(String carCode) {
 
         return repository.findCarByCarCode(carCode);
     }
 
-    public Car getCarByMainStationId(int mainStationId) {
+    public  List<Car> getCarByMainStationId(int mainStationId) {
 
         return repository.findCarByMainStationId(mainStationId);
     }
 
-    public Car getCarByTrafficId(int trafficId) {
-        return repository.findCarByTrafficId(trafficId);
+    public List<Car> getCarsByTrafficId(int trafficId) {
+        return repository.findCarsByTrafficId(trafficId);
     }
 
     public Car getCarByQrCode(String qrCode) {
