@@ -33,10 +33,11 @@ public class CarService {
         return repository.findCarByCarCode(carCode);
     }
 
-    public  List<Car> getCarByMainStationId(int mainStationId) {
+    public List<Car> getCarsByMainStationId(int mainStationId) {
 
-        return repository.findCarByMainStationId(mainStationId);
+        return repository.findCarsByMainStationId(mainStationId);
     }
+
 
     public List<Car> getCarsByTrafficId(int trafficId) {
         return repository.findCarsByTrafficId(trafficId);
@@ -44,6 +45,10 @@ public class CarService {
 
     public Car getCarByQrCode(String qrCode) {
         return repository.findCarByQrCode(qrCode);
+    }
+
+    public Car getCarByMainStationId(int carId, int mainStationId) {
+        return repository.findCarByIdAndAndMainStationId(carId, mainStationId);
     }
 
     public List<Car> getCarsByOwnerId(int ownerId) {

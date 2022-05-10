@@ -19,11 +19,21 @@ public class Owner {
     @Column(name = "password", nullable = false, length = 225)
     private String password;
 
-    @Column(name = "phone", nullable = false, length = 225,unique = true)
+    @Column(name = "phone", nullable = false, length = 225, unique = true)
     private String phone;
 
-    @Column(name = "username", nullable = false, length = 225,unique = true)
+    @Column(name = "username", nullable = false, length = 225, unique = true)
     private String username;
+    @Column(name = "full_name", nullable = false, length = 225, unique = true)
+    private String fullName;
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     @OneToMany(mappedBy = "owner")
     @JsonBackReference

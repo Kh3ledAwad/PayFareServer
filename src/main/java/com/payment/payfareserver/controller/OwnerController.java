@@ -28,6 +28,10 @@ public class OwnerController {
     @PostMapping("/owner")
     public Owner save(@RequestBody OwnerDTO ownerDTO) {
         Owner owner = new Owner();
+
+        if (ownerDTO.getId() != null)
+            owner.setId(ownerDTO.getId());
+
         owner.setPassword(ownerDTO.getPassword());
         owner.setUsername(ownerDTO.getUsername());
         owner.setPhone(ownerDTO.getPhone());
@@ -36,12 +40,7 @@ public class OwnerController {
 
     @PutMapping("/owner")
     public Owner update(@RequestBody OwnerDTO ownerDTO) {
-        Owner owner = new Owner();
-        owner.setId(ownerDTO.getId());
-        owner.setPassword(ownerDTO.getPassword());
-        owner.setUsername(ownerDTO.getUsername());
-        owner.setPhone(ownerDTO.getPhone());
-        return ownerService.update(owner);
+        return save(ownerDTO);
     }
 
     @DeleteMapping("/owner")

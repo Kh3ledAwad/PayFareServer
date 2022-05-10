@@ -6,20 +6,31 @@ import java.util.Set;
 
 public class OwnerDTO  {
     private  Integer id;
+    private String fullName;
     private  String password;
     private  String phone;
     private  String username;
     private  Set<CarDTO> cars;
 
-    public OwnerDTO(Integer id, String password, String phone, String username, Set<CarDTO> cars) {
+    public OwnerDTO(Integer id, String fullName, String password, String phone, String username, Set<CarDTO> cars) {
         this.id = id;
+        this.fullName = fullName;
         this.password = password;
         this.phone = phone;
         this.username = username;
         this.cars = cars;
     }
 
+
     public OwnerDTO() {
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setId(Integer id) {
@@ -65,27 +76,25 @@ public class OwnerDTO  {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OwnerDTO entity = (OwnerDTO) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.password, entity.password) &&
-                Objects.equals(this.phone, entity.phone) &&
-                Objects.equals(this.username, entity.username) &&
-                Objects.equals(this.cars, entity.cars);
+        if (!(o instanceof OwnerDTO)) return false;
+        OwnerDTO ownerDTO = (OwnerDTO) o;
+        return Objects.equals(getId(), ownerDTO.getId()) && Objects.equals(getFullName(), ownerDTO.getFullName()) && Objects.equals(getPassword(), ownerDTO.getPassword()) && Objects.equals(getPhone(), ownerDTO.getPhone()) && Objects.equals(getUsername(), ownerDTO.getUsername()) && Objects.equals(getCars(), ownerDTO.getCars());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, password, phone, username, cars);
+        return Objects.hash(getId(), getFullName(), getPassword(), getPhone(), getUsername(), getCars());
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "password = " + password + ", " +
-                "phone = " + phone + ", " +
-                "username = " + username + ", " +
-                "cars = " + cars + ")";
+        return "OwnerDTO{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", username='" + username + '\'' +
+                ", cars=" + cars +
+                '}';
     }
 }

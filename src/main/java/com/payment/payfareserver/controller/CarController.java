@@ -35,14 +35,19 @@ public class CarController {
         return carService.getCarById(carId);
     }
 
+    @RequestMapping(value = "/car/get-by-station", method = RequestMethod.GET)
+    public Car getCarByMainStationId(@RequestParam("id") int carId,@RequestParam("station_id") int stationId) {
+        return carService.getCarByMainStationId(carId,stationId);
+    }
+
     @RequestMapping(value = "/car/get-by-car-code", method = RequestMethod.GET)
     public Car getCarByCarCode(@RequestParam("car_code") String carCode) {
         return carService.getCarByCarCode(carCode);
     }
 
     @RequestMapping(value = "/station/cars", method = RequestMethod.GET)
-    public  List<Car> getCarByMainStationId(@RequestParam("station_id") int stationId) {
-        return carService.getCarByMainStationId(stationId);
+    public  List<Car> getCarsByMainStationId(@RequestParam("station_id") int stationId) {
+        return carService.getCarsByMainStationId(stationId);
     }
 
     @RequestMapping(value = "/traffic/cars", method = RequestMethod.GET)
