@@ -35,6 +35,9 @@ public class UserService {
     public User getUserById(int userId) {
         return repository.findUserById(userId);
     }
+    public User getUserByPhone(String phone){
+        return repository.findUsersByPhone(phone);
+    }
 
     public int getCount() {
         return (int) repository.count();

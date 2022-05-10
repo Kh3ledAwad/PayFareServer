@@ -36,6 +36,10 @@ public class UserController {
 
         return userService.getUserById(userId);
     }
+    @RequestMapping(value = "/user/get-by-phone", method = RequestMethod.GET)
+    public User getUserByPhone(@RequestParam("phone") String phone) {
+        return userService.getUserByPhone(phone);
+    }
 
     @RequestMapping(value = "/user/get-all-client", method = RequestMethod.GET)
     public Client getAllClientByUserId(@RequestParam("id") int userId) {
