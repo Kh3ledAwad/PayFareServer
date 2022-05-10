@@ -32,6 +32,7 @@ public class OwnerController {
         if (ownerDTO.getId() != null)
             owner.setId(ownerDTO.getId());
 
+        owner.setFullName(ownerDTO.getFullName());
         owner.setPassword(ownerDTO.getPassword());
         owner.setUsername(ownerDTO.getUsername());
         owner.setPhone(ownerDTO.getPhone());
