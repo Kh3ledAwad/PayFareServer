@@ -2,13 +2,13 @@ package com.payment.payfareserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -20,11 +20,12 @@ public class Trip {
     @Column(name = "trip_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "traffic_id", nullable = false)
-    @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
-    private Traffic traffic;
+    @Column(name = "date", nullable = false)
+    @CreationTimestamp
+    private LocalDateTime date;
+
+    @Column(name = "price", nullable = false, precision = 15, scale = 2)
+    private BigDecimal price;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "admin_id", nullable = false)
@@ -33,37 +34,42 @@ public class Trip {
     private Admin admin;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "car_id", nullable = false)
+    @JsonManagedReference
+    @Fetch(FetchMode.JOIN)
+    private Car car;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "driver_id", nullable = false)
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
     private Driver driver;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "car_id", nullable = false)
+    @JoinColumn(name = "traffic_id", nullable = false)
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
-    private Car car;
-
-    @Column(name = "date", nullable = false)
-    private LocalDate date;
-
-    @Column(name = "time", nullable = false)
-    private LocalTime time;
-
-    @Column(name = "price", nullable = false, precision = 15, scale = 2)
-    private BigDecimal price;
+    private Traffic traffic;
 
     @OneToMany(mappedBy = "trip")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
     private Set<RidesHistory> ridesHistories = new LinkedHashSet<>();
-    @JsonBackReference
-    public Set<RidesHistory> getRidesHistories() {
-        return ridesHistories;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setRidesHistories(Set<RidesHistory> ridesHistories) {
-        this.ridesHistories = ridesHistories;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     public BigDecimal getPrice() {
@@ -74,20 +80,12 @@ public class Trip {
         this.price = price;
     }
 
-    public LocalTime getTime() {
-        return time;
+    public Admin getAdmin() {
+        return admin;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
     public Car getCar() {
@@ -106,27 +104,19 @@ public class Trip {
         this.driver = driver;
     }
 
-    public Admin getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-
     public Traffic getTraffic() {
         return traffic;
     }
 
-    public void setTraffic(Traffic tra) {
-        this.traffic = tra;
+    public void setTraffic(Traffic traffic) {
+        this.traffic = traffic;
     }
 
-    public Integer getId() {
-        return id;
+    public Set<RidesHistory> getRidesHistories() {
+        return ridesHistories;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRidesHistories(Set<RidesHistory> ridesHistories) {
+        this.ridesHistories = ridesHistories;
     }
 }

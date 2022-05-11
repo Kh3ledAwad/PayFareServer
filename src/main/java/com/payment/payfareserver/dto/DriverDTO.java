@@ -1,29 +1,22 @@
 package com.payment.payfareserver.dto;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
-
-/**
- * Created by khaledawad on 4/13/2022.
- */
 public class DriverDTO  {
     private  Integer id;
     private  CarDTO car;
     private  String driverCode;
     private  UserDTO user;
-    private  String carCode;
     private  String liceNum;
     private  BigDecimal wallet;
     private  Set<TripDTO> trips;
 
-    public DriverDTO(Integer id, CarDTO car, String driverCode, UserDTO user, String carCode, String liceNum, BigDecimal wallet, Set<TripDTO> trips) {
+    public DriverDTO(Integer id, CarDTO car, String driverCode, UserDTO user, String liceNum, BigDecimal wallet, Set<TripDTO> trips) {
         this.id = id;
         this.car = car;
         this.driverCode = driverCode;
         this.user = user;
-        this.carCode = carCode;
         this.liceNum = liceNum;
         this.wallet = wallet;
         this.trips = trips;
@@ -46,10 +39,6 @@ public class DriverDTO  {
 
     public void setUser(UserDTO user) {
         this.user = user;
-    }
-
-    public void setCarCode(String carCode) {
-        this.carCode = carCode;
     }
 
     public void setLiceNum(String liceNum) {
@@ -80,10 +69,6 @@ public class DriverDTO  {
         return user;
     }
 
-    public String getCarCode() {
-        return carCode;
-    }
-
     public String getLiceNum() {
         return liceNum;
     }
@@ -105,7 +90,6 @@ public class DriverDTO  {
                 Objects.equals(this.car, entity.car) &&
                 Objects.equals(this.driverCode, entity.driverCode) &&
                 Objects.equals(this.user, entity.user) &&
-                Objects.equals(this.carCode, entity.carCode) &&
                 Objects.equals(this.liceNum, entity.liceNum) &&
                 Objects.equals(this.wallet, entity.wallet) &&
                 Objects.equals(this.trips, entity.trips);
@@ -113,7 +97,7 @@ public class DriverDTO  {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, car, driverCode, user, carCode, liceNum, wallet, trips);
+        return Objects.hash(id, car, driverCode, user, liceNum, wallet, trips);
     }
 
     @Override
@@ -123,7 +107,6 @@ public class DriverDTO  {
                 "car = " + car + ", " +
                 "driverCode = " + driverCode + ", " +
                 "user = " + user + ", " +
-                "carCode = " + carCode + ", " +
                 "liceNum = " + liceNum + ", " +
                 "wallet = " + wallet + ", " +
                 "trips = " + trips + ")";

@@ -18,10 +18,12 @@ public class UserService {
     public User save(User user) {
         return repository.save(user);
     }
-    public void delete(int userId){
+
+    public void delete(int userId) {
         repository.deleteById(userId);
     }
-    public List<User>getAllUsers() {
+
+    public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         Streamable.of(repository.findAll())
                 .forEach(users::add);
@@ -35,8 +37,13 @@ public class UserService {
     public User getUserById(int userId) {
         return repository.findUserById(userId);
     }
-    public User getUserByPhone(String phone){
+
+    public User getUserByPhone(String phone) {
         return repository.findUsersByPhone(phone);
+    }
+
+    public User login(String phone, String password) {
+        return repository.findUserByPhoneAndPassword(phone, password);
     }
 
     public int getCount() {

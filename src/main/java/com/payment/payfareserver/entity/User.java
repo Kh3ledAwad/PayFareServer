@@ -1,11 +1,9 @@
 package com.payment.payfareserver.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
+import javax.validation.constraints.Pattern;
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -25,9 +23,11 @@ public class User {
     private String userName;
 
     @Column(name = "password", nullable = false, length = 200)
+    @JsonIgnore
     private String password;
 
     @Column(name = "phone", nullable = false, length = 20,unique = true)
+    @Pattern(regexp = "^01[0125][0-9]{8}$")
     private String phone;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

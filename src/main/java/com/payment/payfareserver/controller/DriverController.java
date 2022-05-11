@@ -1,5 +1,6 @@
 package com.payment.payfareserver.controller;
 
+import com.payment.payfareserver.service.CarService;
 import com.payment.payfareserver.service.DriverService;
 import com.payment.payfareserver.service.TypeService;
 import com.payment.payfareserver.service.UserService;
@@ -9,7 +10,9 @@ import com.payment.payfareserver.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Random;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -21,8 +24,10 @@ public class DriverController {
     private UserService userService;
     @Autowired
     private TypeService typeService;
+    @Autowired
+    private CarService carService;
 
-    @GetMapping("/driver/get-all")
+    @GetMapping("/driver")
     public List<Driver> getAllDrivers() {
         return driverService.getAllDrivers();
     }
@@ -32,22 +37,32 @@ public class DriverController {
         return driverService.getDriverById(driverId);
     }
 
-    @PostMapping("/driver/save-driver")
+    @RequestMapping(value = "/driver/get-by-driver-code", method = RequestMethod.GET)
+    public Driver getDriverByDriverCode(@RequestParam("driver_code") String driverCode) {
+        return driverService.getDriverByDriverCode(driverCode);
+    }
+    @RequestMapping(value = "/driver/phone", method = RequestMethod.GET)
+    public Driver getDriverByDriverPhoneNumber(@RequestParam("phone") String phone) {
+        return driverService.getDriverByUserPhone(phone);
+    }
+
+    @PostMapping("/driver")
     public Driver save(@RequestBody DriverDTO driverDTO) {
+        Random rand = new Random();
+        int maxNumber = 1000000000;
+        Integer randomNumber = rand.nextInt(maxNumber) + 1;
         Driver driver = new Driver();
         User user = new User();
         user.setName(driverDTO.getUser().getName());
         user.setUserName(driverDTO.getUser().getUserName());
-        user.setPassword(driverDTO.getUser().getPassword());
+        user.setPassword(driverDTO.getLiceNum());
         user.setPhone(driverDTO.getUser().getPhone());
-        user.setType(typeService.getTypeById(driverDTO.getUser().getType().getId()));
+        user.setType(typeService.getTypeById(2));
         driver.setUser(userService.save(user));
-        driver.setDriverCode(driverDTO.getDriverCode());
-        //driver.setDriverCode();
+        driver.setDriverCode(randomNumber.toString());
         driver.setLiceNum(driverDTO.getLiceNum());
-        driver.setWallet(driverDTO.getWallet());
+        driver.setWallet(BigDecimal.valueOf(0.00));
+        driver.setCar(carService.getCarById(driverDTO.getCar().getId()));
         return driverService.save(driver);
     }
-
-
 }

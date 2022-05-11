@@ -37,6 +37,14 @@ public class DriverService {
         return repository.findDriverById(driverId);
     }
 
+    public Driver getDriverByDriverCode(String driverCode) {
+        return repository.findDriverByDriverCode(driverCode);
+    }
+
+    public Driver getDriverByUserPhone(String phone) {
+        return repository.findDriverByUserPhone(phone);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }

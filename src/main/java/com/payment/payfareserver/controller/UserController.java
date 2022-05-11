@@ -36,6 +36,7 @@ public class UserController {
 
         return userService.getUserById(userId);
     }
+
     @RequestMapping(value = "/user/get-by-phone", method = RequestMethod.GET)
     public User getUserByPhone(@RequestParam("phone") String phone) {
         return userService.getUserByPhone(phone);
@@ -54,6 +55,11 @@ public class UserController {
         user.setPhone(userDTO.getPhone());
         user.setType(typeService.getTypeById(userDTO.getType().getId()));
         return userService.save(user);
+    }
+
+    @PostMapping("/user/login")
+    public User Login(@RequestBody UserDTO userDTO) {
+        return userService.login(userDTO.getPhone(), userDTO.getPassword());
     }
 
 }

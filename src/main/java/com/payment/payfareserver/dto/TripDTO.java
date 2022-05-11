@@ -3,13 +3,11 @@ package com.payment.payfareserver.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Set;
 
-/**
- * Created by khaledawad on 4/13/2022.
- */
 public class TripDTO  {
     private  Integer id;
     private  Integer traId;
@@ -19,12 +17,11 @@ public class TripDTO  {
     private  AdminDTO admin;
     private  DriverDTO driver;
     private  CarDTO car;
-    private  LocalDate date;
-    private  LocalTime time;
+    private LocalDateTime date;
     private  BigDecimal price;
     private  Set<RidesHistoryDTO> rideshistories;
 
-    public TripDTO(Integer id, Integer traId, BigDecimal traPrice, String traFrom, String traTo, AdminDTO admin, DriverDTO driver, CarDTO car, LocalDate date, LocalTime time, BigDecimal price, Set<RidesHistoryDTO> rideshistories) {
+    public TripDTO(Integer id, Integer traId, BigDecimal traPrice, String traFrom, String traTo, AdminDTO admin, DriverDTO driver, CarDTO car, LocalDateTime date, BigDecimal price, Set<RidesHistoryDTO> rideshistories) {
         this.id = id;
         this.traId = traId;
         this.traPrice = traPrice;
@@ -34,7 +31,6 @@ public class TripDTO  {
         this.driver = driver;
         this.car = car;
         this.date = date;
-        this.time = time;
         this.price = price;
         this.rideshistories = rideshistories;
     }
@@ -74,12 +70,8 @@ public class TripDTO  {
         this.car = car;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
     }
 
     public void setPrice(BigDecimal price) {
@@ -122,13 +114,10 @@ public class TripDTO  {
         return car;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public LocalTime getTime() {
-        return time;
-    }
 
     public BigDecimal getPrice() {
         return price;
@@ -152,14 +141,13 @@ public class TripDTO  {
                 Objects.equals(this.driver, entity.driver) &&
                 Objects.equals(this.car, entity.car) &&
                 Objects.equals(this.date, entity.date) &&
-                Objects.equals(this.time, entity.time) &&
                 Objects.equals(this.price, entity.price) &&
                 Objects.equals(this.rideshistories, entity.rideshistories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, traId, traPrice, traFrom, traTo, admin, driver, car, date, time, price, rideshistories);
+        return Objects.hash(id, traId, traPrice, traFrom, traTo, admin, driver, car, date, price, rideshistories);
     }
 
     @Override
@@ -174,7 +162,6 @@ public class TripDTO  {
                 "driver = " + driver + ", " +
                 "car = " + car + ", " +
                 "date = " + date + ", " +
-                "time = " + time + ", " +
                 "price = " + price + ", " +
                 "rideshistories = " + rideshistories + ")";
     }
