@@ -57,6 +57,11 @@ public class Car {
     @Fetch(FetchMode.JOIN)
     private Set<Driver> drivers = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "car")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<Chairs> chairs = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -137,4 +142,11 @@ public class Car {
         this.drivers = drivers;
     }
 
+    public Set<Chairs> getChairs() {
+        return chairs;
+    }
+
+    public void setChairs(Set<Chairs> chairs) {
+        this.chairs = chairs;
+    }
 }

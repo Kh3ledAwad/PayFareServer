@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -58,8 +59,13 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public User Login(@RequestBody UserDTO userDTO) {
-        return userService.login(userDTO.getPhone(), userDTO.getPassword());
+    public Optional<Object> Login(@RequestBody UserDTO userDTO) {
+        User user =userService.login(userDTO.getPhone(), userDTO.getPassword());
+        if(user.getType().getId().equals(3))
+        {
+            return Optional.ofNullable(clientService.getClientByUserId(user.getId()));
+        }
+        return Optional.of(user);
     }
 
 }

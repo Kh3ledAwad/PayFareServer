@@ -31,6 +31,7 @@ public class City {
 
     @OneToMany(mappedBy = "city")
     @JsonBackReference
+    @Fetch(FetchMode.JOIN)
     private Set<Station> stations = new LinkedHashSet<>();
 
     public Integer getId() {
