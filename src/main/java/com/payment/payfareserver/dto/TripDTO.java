@@ -1,38 +1,31 @@
 package com.payment.payfareserver.dto;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Set;
 
-public class TripDTO  {
+public class TripDTO {
     private  Integer id;
-    private  Integer traId;
-    private  BigDecimal traPrice;
-    private  String traFrom;
-    private  String traTo;
-    private  AdminDTO admin;
-    private  DriverDTO driver;
-    private  CarDTO car;
-    private LocalDateTime date;
+    private  LocalDateTime date;
     private  BigDecimal price;
-    private  Set<RidesHistoryDTO> rideshistories;
+    private  AdminDTO admin;
+    private  CarDTO car;
+    private  DriverDTO driver;
+    private  TrafficDTO traffic;
+    private  Set<RidesHistoryDTO> ridesHistories;
+    private  Set<BlockchainDto> block;
 
-    public TripDTO(Integer id, Integer traId, BigDecimal traPrice, String traFrom, String traTo, AdminDTO admin, DriverDTO driver, CarDTO car, LocalDateTime date, BigDecimal price, Set<RidesHistoryDTO> rideshistories) {
+    public TripDTO(Integer id, LocalDateTime date, BigDecimal price, AdminDTO admin, CarDTO car, DriverDTO driver, TrafficDTO traffic, Set<RidesHistoryDTO> ridesHistories, Set<BlockchainDto> block) {
         this.id = id;
-        this.traId = traId;
-        this.traPrice = traPrice;
-        this.traFrom = traFrom;
-        this.traTo = traTo;
-        this.admin = admin;
-        this.driver = driver;
-        this.car = car;
         this.date = date;
         this.price = price;
-        this.rideshistories = rideshistories;
+        this.admin = admin;
+        this.car = car;
+        this.driver = driver;
+        this.traffic = traffic;
+        this.ridesHistories = ridesHistories;
+        this.block = block;
     }
 
     public TripDTO() {
@@ -40,34 +33,6 @@ public class TripDTO  {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public void setTraId(Integer traId) {
-        this.traId = traId;
-    }
-
-    public void setTraPrice(BigDecimal traPrice) {
-        this.traPrice = traPrice;
-    }
-
-    public void setTraFrom(String traFrom) {
-        this.traFrom = traFrom;
-    }
-
-    public void setTraTo(String traTo) {
-        this.traTo = traTo;
-    }
-
-    public void setAdmin(AdminDTO admin) {
-        this.admin = admin;
-    }
-
-    public void setDriver(DriverDTO driver) {
-        this.driver = driver;
-    }
-
-    public void setCar(CarDTO car) {
-        this.car = car;
     }
 
     public void setDate(LocalDateTime date) {
@@ -78,53 +43,64 @@ public class TripDTO  {
         this.price = price;
     }
 
-    public void setRideshistories(Set<RidesHistoryDTO> rideshistories) {
-        this.rideshistories = rideshistories;
+    public void setAdmin(AdminDTO admin) {
+        this.admin = admin;
+    }
+
+    public void setCar(CarDTO car) {
+        this.car = car;
+    }
+
+    public void setDriver(DriverDTO driver) {
+        this.driver = driver;
+    }
+
+    public void setTraffic(TrafficDTO traffic) {
+        this.traffic = traffic;
+    }
+
+    public void setRidesHistories(Set<RidesHistoryDTO> ridesHistories) {
+        this.ridesHistories = ridesHistories;
+    }
+
+    public void setBlock(Set<BlockchainDto> block) {
+        this.block = block;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public Integer getTraId() {
-        return traId;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public BigDecimal getTraPrice() {
-        return traPrice;
-    }
-
-    public String getTraFrom() {
-        return traFrom;
-    }
-
-    public String getTraTo() {
-        return traTo;
+    public BigDecimal getPrice() {
+        return price;
     }
 
     public AdminDTO getAdmin() {
         return admin;
     }
 
-    public DriverDTO getDriver() {
-        return driver;
-    }
-
     public CarDTO getCar() {
         return car;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public DriverDTO getDriver() {
+        return driver;
     }
 
-
-    public BigDecimal getPrice() {
-        return price;
+    public TrafficDTO getTraffic() {
+        return traffic;
     }
 
-    public Set<RidesHistoryDTO> getRideshistories() {
-        return rideshistories;
+    public Set<RidesHistoryDTO> getRidesHistories() {
+        return ridesHistories;
+    }
+
+    public Set<BlockchainDto> getBlock() {
+        return block;
     }
 
     @Override
@@ -133,36 +109,24 @@ public class TripDTO  {
         if (o == null || getClass() != o.getClass()) return false;
         TripDTO entity = (TripDTO) o;
         return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.traId, entity.traId) &&
-                Objects.equals(this.traPrice, entity.traPrice) &&
-                Objects.equals(this.traFrom, entity.traFrom) &&
-                Objects.equals(this.traTo, entity.traTo) &&
-                Objects.equals(this.admin, entity.admin) &&
-                Objects.equals(this.driver, entity.driver) &&
-                Objects.equals(this.car, entity.car) &&
                 Objects.equals(this.date, entity.date) &&
                 Objects.equals(this.price, entity.price) &&
-                Objects.equals(this.rideshistories, entity.rideshistories);
+                Objects.equals(this.admin, entity.admin) &&
+                Objects.equals(this.car, entity.car) &&
+                Objects.equals(this.driver, entity.driver) &&
+                Objects.equals(this.traffic, entity.traffic) &&
+                Objects.equals(this.ridesHistories, entity.ridesHistories) &&
+                Objects.equals(this.block, entity.block);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, traId, traPrice, traFrom, traTo, admin, driver, car, date, price, rideshistories);
+        return Objects.hash(id, date, price, admin, car, driver, traffic, ridesHistories, block);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "traId = " + traId + ", " +
-                "traPrice = " + traPrice + ", " +
-                "traFrom = " + traFrom + ", " +
-                "traTo = " + traTo + ", " +
-                "admin = " + admin + ", " +
-                "driver = " + driver + ", " +
-                "car = " + car + ", " +
-                "date = " + date + ", " +
-                "price = " + price + ", " +
-                "rideshistories = " + rideshistories + ")";
+                "id = " + id ;
     }
 }

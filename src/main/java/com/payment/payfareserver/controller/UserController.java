@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public Optional<Object> Login(@RequestBody UserDTO userDTO) {
+    public Optional<Object> login(@RequestBody UserDTO userDTO) {
         User user =userService.login(userDTO.getPhone(), userDTO.getPassword());
         if(user.getType().getId().equals(3))
         {

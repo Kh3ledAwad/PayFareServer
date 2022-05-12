@@ -56,6 +56,11 @@ public class Trip {
     @Fetch(FetchMode.JOIN)
     private Set<RidesHistory> ridesHistories = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "trip")
+    @JsonBackReference
+    @Fetch(FetchMode.JOIN)
+    private Set<Blockchain> block = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }

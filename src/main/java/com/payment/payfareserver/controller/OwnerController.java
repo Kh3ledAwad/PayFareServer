@@ -1,5 +1,6 @@
 package com.payment.payfareserver.controller;
 
+import com.payment.payfareserver.dto.UserDTO;
 import com.payment.payfareserver.service.OwnerService;
 import com.payment.payfareserver.dto.OwnerDTO;
 import com.payment.payfareserver.entity.Owner;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -23,6 +25,11 @@ public class OwnerController {
     @RequestMapping(value = "/owner/get-by-id", method = RequestMethod.GET)
     public Owner getOwnerById(@RequestParam("id") int ownerId) {
         return ownerService.getOwnerById(ownerId);
+    }
+
+    @PostMapping("/owner/login")
+    public Owner login(@RequestBody OwnerDTO ownerDTO) {
+        return ownerService.login(ownerDTO.getPhone(), ownerDTO.getPassword());
     }
 
     @PostMapping("/owner")

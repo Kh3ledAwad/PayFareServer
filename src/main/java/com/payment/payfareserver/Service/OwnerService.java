@@ -21,6 +21,10 @@ public class OwnerService {
 
     //public Owner update (Owner owner){return  repository.save(owner);}
 
+    public Owner login(String phone,String password){
+        return repository.findOwnerByPhoneAndAndPassword(phone,password);
+    }
+
     public void delete (int ownerId){repository.deleteById(ownerId);}
     public List<Owner> getAllOwners() {
         List<Owner> owners = new ArrayList<>();
