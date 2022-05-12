@@ -1,6 +1,7 @@
 package com.payment.payfareserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -17,6 +18,7 @@ public class Owner {
     private Integer id;
 
     @Column(name = "password", nullable = false, length = 225)
+    @JsonIgnore
     private String password;
 
     @Column(name = "phone", nullable = false, length = 225, unique = true)
