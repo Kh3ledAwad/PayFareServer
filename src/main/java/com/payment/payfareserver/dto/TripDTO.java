@@ -14,9 +14,9 @@ public class TripDTO {
     private  DriverDTO driver;
     private  TrafficDTO traffic;
     private  Set<RidesHistoryDTO> ridesHistories;
-    private  Set<BlockchainDto> block;
+    private  Set<BlockchainDTO> block;
 
-    public TripDTO(Integer id, LocalDateTime date, BigDecimal price, AdminDTO admin, CarDTO car, DriverDTO driver, TrafficDTO traffic, Set<RidesHistoryDTO> ridesHistories, Set<BlockchainDto> block) {
+    public TripDTO(Integer id, LocalDateTime date, BigDecimal price, AdminDTO admin, CarDTO car, DriverDTO driver, TrafficDTO traffic, Set<RidesHistoryDTO> ridesHistories, Set<BlockchainDTO> block) {
         this.id = id;
         this.date = date;
         this.price = price;
@@ -63,7 +63,7 @@ public class TripDTO {
         this.ridesHistories = ridesHistories;
     }
 
-    public void setBlock(Set<BlockchainDto> block) {
+    public void setBlock(Set<BlockchainDTO> block) {
         this.block = block;
     }
 
@@ -99,7 +99,7 @@ public class TripDTO {
         return ridesHistories;
     }
 
-    public Set<BlockchainDto> getBlock() {
+    public Set<BlockchainDTO> getBlock() {
         return block;
     }
 

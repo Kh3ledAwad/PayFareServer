@@ -6,7 +6,9 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,7 +19,7 @@ public class Car {
     @Column(name = "car_id", nullable = false)
     private Integer id;
 
-    @Column(name = "car_code", nullable = false, length = 225,unique = true)
+    @Column(name = "car_code", nullable = false, length = 225, unique = true)
     private String carCode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -38,13 +40,13 @@ public class Car {
     @Fetch(FetchMode.JOIN)
     private Owner owner;
 
-    @Column(name = "car_plate_num", nullable = false, length = 225,unique = true)
+    @Column(name = "car_plate_num", nullable = false, length = 225, unique = true)
     private String carPlateNum;
 
     @Column(name = "car_capacity", nullable = false)
     private Integer carCapacity;
 
-    @Column(name = "qr_code", nullable = false, length = 225,unique = true)
+    @Column(name = "qr_code", nullable = false, length = 225, unique = true)
     private String qrCode;
 
     @OneToMany(mappedBy = "car")
@@ -60,7 +62,7 @@ public class Car {
     @OneToMany(mappedBy = "car")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<Chairs> chairs = new LinkedHashSet<>();
+    private List<Chairs> chairs = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -142,11 +144,11 @@ public class Car {
         this.drivers = drivers;
     }
 
-    public Set<Chairs> getChairs() {
+    public List<Chairs> getChairs() {
         return chairs;
     }
 
-    public void setChairs(Set<Chairs> chairs) {
+    public void setChairs(List<Chairs> chairs) {
         this.chairs = chairs;
     }
 }

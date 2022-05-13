@@ -1,13 +1,10 @@
 package com.payment.payfareserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.security.Timestamp;
-import java.time.Instant;
 
 @Entity
 @Table(name = "blockchain")

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BlockchainRepository extends JpaRepository<Blockchain, Integer> {
     Blockchain findTopByOrderByIdDesc();
+
 }

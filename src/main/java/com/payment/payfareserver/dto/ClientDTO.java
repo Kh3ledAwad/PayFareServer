@@ -1,6 +1,5 @@
 package com.payment.payfareserver.dto;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;

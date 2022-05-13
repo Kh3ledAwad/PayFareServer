@@ -1,14 +1,13 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.dto.UserDTO;
-import com.payment.payfareserver.service.OwnerService;
 import com.payment.payfareserver.dto.OwnerDTO;
+import com.payment.payfareserver.entity.Car;
 import com.payment.payfareserver.entity.Owner;
+import com.payment.payfareserver.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -44,6 +43,17 @@ public class OwnerController {
         owner.setUsername(ownerDTO.getUsername());
         owner.setPhone(ownerDTO.getPhone());
         return ownerService.save(owner);
+    }
+
+    @RequestMapping(value = "/owner/cars", method = RequestMethod.GET)
+    public List<Car> getAllCarsByOwnerId(@RequestParam("owner_id") int ownerId) {
+        Owner owner = ownerService.getOwnerById(ownerId);
+        return owner.getCars();
+    }
+    @RequestMapping(value = "/owner/number-of-car", method = RequestMethod.GET)
+    public int getNumberOfCarsByOwnerId(@RequestParam("owner_id") int ownerId) {
+        Owner owner = ownerService.getOwnerById(ownerId);
+        return owner.getCars().size();
     }
 
     @PutMapping("/owner")

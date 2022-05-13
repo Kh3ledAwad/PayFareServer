@@ -1,11 +1,9 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.service.CarService;
 import com.payment.payfareserver.dto.CarDTO;
 import com.payment.payfareserver.entity.Car;
-import com.payment.payfareserver.service.OwnerService;
-import com.payment.payfareserver.service.StationService;
-import com.payment.payfareserver.service.TrafficService;
+import com.payment.payfareserver.entity.Chairs;
+import com.payment.payfareserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +22,8 @@ public class CarController {
     private TrafficService trafficService;
     @Autowired
     private OwnerService ownerService;
+    @Autowired
+    private ChairsService chairsService;
 
     @GetMapping("/car")
     public List<Car> getAllCars() {
@@ -35,9 +35,26 @@ public class CarController {
         return carService.getCarById(carId);
     }
 
+    @RequestMapping(value = "/car/chairs", method = RequestMethod.GET)
+    public List<Chairs> getChairsCarById(@RequestParam("id") int carId) {
+        Car car = carService.getCarById(carId);
+        return car.getChairs();
+    }
+
+    @PutMapping("/car/chairsRest")
+    public Boolean chairsRest(@RequestParam("id") int carId) {
+        Car car = carService.getCarById(carId);
+        List<Chairs> allChairs = car.getChairs();
+        for (Chairs chairs : allChairs) {
+            chairs.setStatus(0);
+            chairsService.save(chairs);
+        }
+        return true;
+    }
+
     @RequestMapping(value = "/car/get-by-station", method = RequestMethod.GET)
-    public Car getCarByMainStationId(@RequestParam("id") int carId,@RequestParam("station_id") int stationId) {
-        return carService.getCarByMainStationId(carId,stationId);
+    public Car getCarByMainStationId(@RequestParam("id") int carId, @RequestParam("station_id") int stationId) {
+        return carService.getCarByMainStationId(carId, stationId);
     }
 
     @RequestMapping(value = "/car/get-by-car-code", method = RequestMethod.GET)
@@ -45,25 +62,12 @@ public class CarController {
         return carService.getCarByCarCode(carCode);
     }
 
-    @RequestMapping(value = "/station/cars", method = RequestMethod.GET)
-    public  List<Car> getCarsByMainStationId(@RequestParam("station_id") int stationId) {
-        return carService.getCarsByMainStationId(stationId);
-    }
-
-    @RequestMapping(value = "/traffic/cars", method = RequestMethod.GET)
-    public List<Car> getCarByTrafficId(@RequestParam("traffic_id") int trafficId) {
-        return carService.getCarsByTrafficId(trafficId);
-    }
 
     @RequestMapping(value = "/car/get-by-qr", method = RequestMethod.GET)
     public Car getCarByQrCode(@RequestParam("qr_code") String qrCode) {
         return carService.getCarByQrCode(qrCode);
     }
 
-    @RequestMapping(value = "/owner/cars", method = RequestMethod.GET)
-    public List<Car> getAllCarsByOwnerId(@RequestParam("owner_id") int ownerId) {
-        return carService.getCarsByOwnerId(ownerId);
-    }
 
     @PostMapping("/car")
     public Car save(@RequestBody CarDTO carDTO) {
@@ -78,7 +82,16 @@ public class CarController {
         car.setCarCapacity(carDTO.getCarCapacity());
         car.setQrCode(carDTO.getQrCode());
         car.setCarPlateNum(carDTO.getCarPlateNum());
-        return carService.save(car);
+        carService.save(car);
+
+        for (int i = 1; i <= carDTO.getCarCapacity(); i++) {
+            Chairs chair = new Chairs();
+            chair.setCar(car);
+            chair.setChairNumber(i);
+            chair.setStatus(0);
+            chairsService.save(chair);
+        }
+        return car;
     }
 
     @PutMapping("/car")

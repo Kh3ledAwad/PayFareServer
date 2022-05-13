@@ -7,7 +7,9 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -41,13 +43,13 @@ public class Traffic {
     @OneToMany(mappedBy = "traffic")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<Car> cars = new LinkedHashSet<>();
+    private List<Car> cars = new ArrayList<>();
 
-    public Set<Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 
-    public void setCars(Set<Car> cars) {
+    public void setCars(List<Car> cars) {
         this.cars = cars;
     }
 

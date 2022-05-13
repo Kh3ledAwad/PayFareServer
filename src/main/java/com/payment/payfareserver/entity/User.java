@@ -1,10 +1,13 @@
 package com.payment.payfareserver.entity;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import javax.validation.constraints.Pattern;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.LinkedHashSet;
 import java.util.Set;
 

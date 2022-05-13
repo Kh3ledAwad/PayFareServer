@@ -1,11 +1,7 @@
 package com.payment.payfareserver.utilities;
 
 import java.security.MessageDigest;
-import java.security.SecureRandom;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class SHA256Helper {
     public static String generateHash(String data) {

@@ -20,7 +20,7 @@ public class Trip {
     @Column(name = "trip_id", nullable = false)
     private Integer id;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     @CreationTimestamp
     private LocalDateTime date;
 

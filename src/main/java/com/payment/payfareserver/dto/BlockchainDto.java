@@ -4,8 +4,8 @@ import com.payment.payfareserver.utilities.SHA256Helper;
 
 import java.util.logging.Logger;
 
-public class BlockchainDto  {
-    private static Logger logger = Logger.getLogger(BlockchainDto.class.getName());
+public class BlockchainDTO {
+    private static Logger logger = Logger.getLogger(BlockchainDTO.class.getName());
 
     private  Integer id;
     private  String hash;
@@ -15,14 +15,14 @@ public class BlockchainDto  {
 
     private String data;
 
-    public BlockchainDto(Integer id, String hash, String previousHash, TripDTO trip) {
+    public BlockchainDTO(Integer id, String hash, String previousHash, TripDTO trip) {
         this.id = id;
         this.hash = hash;
         this.previousHash = previousHash;
         this.trip = trip;
     }
 
-    public BlockchainDto() {
+    public BlockchainDTO() {
     }
     public void generateHash() {
 

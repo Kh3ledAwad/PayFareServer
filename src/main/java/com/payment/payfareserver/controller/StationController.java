@@ -1,10 +1,11 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.service.CityService;
-import com.payment.payfareserver.service.StationService;
 import com.payment.payfareserver.dto.StationDTO;
+import com.payment.payfareserver.entity.Car;
 import com.payment.payfareserver.entity.City;
 import com.payment.payfareserver.entity.Station;
+import com.payment.payfareserver.service.CityService;
+import com.payment.payfareserver.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,12 @@ public class StationController {
     @RequestMapping(value = "/station/get-by-city-id", method = RequestMethod.GET)
     public List<Station> getStationByCityId(@RequestParam("id") int cityId) {
         return stationService.getStationsByCityId(cityId);
+    }
+
+    @RequestMapping(value = "/station/cars", method = RequestMethod.GET)
+    public List<Car> getCarsByMainStationId(@RequestParam("station_id") int stationId) {
+        Station station = stationService.getStationById(stationId);
+        return station.getCars();
     }
 
     @PostMapping("/station")

@@ -1,10 +1,10 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.service.CityService;
-import com.payment.payfareserver.service.StateService;
 import com.payment.payfareserver.dto.CityDTO;
 import com.payment.payfareserver.entity.City;
 import com.payment.payfareserver.entity.State;
+import com.payment.payfareserver.service.CityService;
+import com.payment.payfareserver.service.StateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

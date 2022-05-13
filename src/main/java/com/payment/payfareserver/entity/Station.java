@@ -6,7 +6,9 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,7 +36,7 @@ public class Station {
     @OneToMany(mappedBy = "mainStation")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<Car> cars = new LinkedHashSet<>();
+    private List<Car> cars = new ArrayList<>();
 
     @OneToMany(mappedBy = "station")
     @JsonBackReference
@@ -49,11 +51,11 @@ public class Station {
         this.admins = admins;
     }
 
-    public Set<Car> getCars() {
+    public List<Car> getCars() {
         return cars;
     }
 
-    public void setCars(Set<Car> cars) {
+    public void setCars(List<Car> cars) {
         this.cars = cars;
     }
 

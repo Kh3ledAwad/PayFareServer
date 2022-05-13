@@ -1,6 +1,9 @@
 package com.payment.payfareserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -18,7 +21,9 @@ public class Chairs {
     @JoinColumn(name = "car_id", nullable = false)
     @Fetch(FetchMode.JOIN)
     @JsonManagedReference
-    private Car car;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+     private Car car;
 
     @Column(name = "chair_number", nullable = false)
     private Integer chairNumber;
@@ -33,6 +38,7 @@ public class Chairs {
     public void setId(Integer id) {
         this.id = id;
     }
+
 
     public Car getCar() {
         return car;

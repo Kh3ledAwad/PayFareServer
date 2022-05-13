@@ -21,4 +21,5 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
     List<Car> findCarsByTrafficId(int trafficId);
 
     Car findCarByQrCode(String qrCode);
+
 }

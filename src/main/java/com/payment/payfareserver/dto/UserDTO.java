@@ -1,9 +1,5 @@
 package com.payment.payfareserver.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 

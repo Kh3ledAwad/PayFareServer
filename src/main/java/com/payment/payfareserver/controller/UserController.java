@@ -1,11 +1,9 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.service.ClientService;
-import com.payment.payfareserver.service.TypeService;
-import com.payment.payfareserver.service.UserService;
 import com.payment.payfareserver.dto.UserDTO;
 import com.payment.payfareserver.entity.Client;
 import com.payment.payfareserver.entity.User;
+import com.payment.payfareserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +19,12 @@ public class UserController {
     private TypeService typeService;
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private DriverService driverService;
+
+    @Autowired
+    private AdminService adminService;
 
     @GetMapping("/user/get-all")
     public List<User> getAllUsers() {
@@ -60,12 +64,13 @@ public class UserController {
 
     @PostMapping("/user/login")
     public Optional<Object> login(@RequestBody UserDTO userDTO) {
-        User user =userService.login(userDTO.getPhone(), userDTO.getPassword());
-        if(user.getType().getId().equals(3))
-        {
+        User user = userService.login(userDTO.getPhone(), userDTO.getPassword());
+        if (user.getType().getId().equals(3)) {
             return Optional.ofNullable(clientService.getClientByUserId(user.getId()));
-        }
-        return Optional.of(user);
+        } else if (user.getType().getId().equals(2)) {
+            return Optional.ofNullable(driverService.getDriverByUserId(user.getId()));
+        } else
+            return Optional.of(adminService.getAdminByUserId(user.getId()));
     }
 
 }

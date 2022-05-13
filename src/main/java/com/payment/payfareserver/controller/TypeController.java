@@ -1,7 +1,7 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.service.TypeService;
 import com.payment.payfareserver.entity.Type;
+import com.payment.payfareserver.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
