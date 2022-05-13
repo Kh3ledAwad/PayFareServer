@@ -1,6 +1,6 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.dto.BlockchainDTO;
+import com.payment.payfareserver.dto.BlockDTO;
 import com.payment.payfareserver.dto.TripDTO;
 import com.payment.payfareserver.entity.Blockchain;
 import com.payment.payfareserver.entity.Trip;
@@ -49,19 +49,19 @@ public class TripController {
 
         Blockchain newBlock = new Blockchain();
         Blockchain oldBlock =blockchainService.getLastBlock();
-        BlockchainDTO blockchainDto = new BlockchainDTO();
-        blockchainDto.setData(SHA256Helper.randomString(20));
+        BlockDTO blockDto = new BlockDTO();
+        blockDto.setData(SHA256Helper.randomString(20));
         if(blockchainService.getCount()==0) {
-            blockchainDto.setPreviousHash("0000000000000000000000000000000000000000000000000000000000000000");
+            blockDto.setPreviousHash("0000000000000000000000000000000000000000000000000000000000000000");
         }else{
-            blockchainDto.setPreviousHash(oldBlock.getHash());
+            blockDto.setPreviousHash(oldBlock.getHash());
         }
-        blockchainDto.generateHash();
-        blockchainDto.setNonce(oldBlock.getNonce());
-        blockchainDto.incrementNonce();
-        newBlock.setHash(blockchainDto.getHash());
-        newBlock.setPreviousHash(blockchainDto.getPreviousHash());
-        newBlock.setNonce(blockchainDto.getNonce());
+        blockDto.generateHash();
+        blockDto.setNonce(oldBlock.getNonce());
+        blockDto.incrementNonce();
+        newBlock.setHash(blockDto.getHash());
+        newBlock.setPreviousHash(blockDto.getPreviousHash());
+        newBlock.setNonce(blockDto.getNonce());
         newBlock.setTrip(tripService.save(trip));
         blockchainService.save(newBlock);
         return trip;
