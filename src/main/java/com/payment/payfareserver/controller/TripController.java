@@ -56,10 +56,10 @@ public class TripController {
             blockDto.setNonce(0);
         }else{
             blockDto.setPreviousHash(oldBlock.getHash());
+            blockDto.setNonce(oldBlock.getNonce());
+            blockDto.incrementNonce();
         }
         blockDto.generateHash();
-        blockDto.setNonce(oldBlock.getNonce());
-        blockDto.incrementNonce();
         newBlock.setHash(blockDto.getHash());
         newBlock.setPreviousHash(blockDto.getPreviousHash());
         newBlock.setNonce(blockDto.getNonce());
