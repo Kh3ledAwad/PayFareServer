@@ -53,6 +53,7 @@ public class TripController {
         blockDto.setData(SHA256Helper.randomString(20));
         if(blockchainService.getCount()==0) {
             blockDto.setPreviousHash("0000000000000000000000000000000000000000000000000000000000000000");
+            blockDto.setNonce(0);
         }else{
             blockDto.setPreviousHash(oldBlock.getHash());
         }
