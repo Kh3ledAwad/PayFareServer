@@ -27,8 +27,8 @@ public class Blockchain {
     @JoinColumn(name = "trip_id")
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
+    //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    //@JsonIdentityReference(alwaysAsId = true)
     private Trip trip;
 
     @Column(name = "nonce", nullable = false)
