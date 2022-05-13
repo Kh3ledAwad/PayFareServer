@@ -32,6 +32,11 @@ public class ClientController {
         return clientService.getClientById(clientId);
     }
 
+    @RequestMapping(value = "/client/get-by-user-id", method = RequestMethod.GET)
+    public Client getClientByUserId(@RequestParam("id") int userId) {
+        return clientService.getClientByUserId(userId);
+    }
+
     @PostMapping("/client")
     public Client save(@RequestBody ClientDTO clientDTO) {
         Client client = new Client();
