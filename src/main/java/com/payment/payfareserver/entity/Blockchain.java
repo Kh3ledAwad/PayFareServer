@@ -1,6 +1,9 @@
 package com.payment.payfareserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -24,6 +27,8 @@ public class Blockchain {
     @JoinColumn(name = "trip_id")
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Trip trip;
 
     @Column(name = "nonce", nullable = false)
