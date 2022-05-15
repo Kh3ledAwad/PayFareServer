@@ -6,7 +6,6 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -24,8 +23,8 @@ public class Client {
     @JsonManagedReference
     private User user;
 
-    @Column(name = "wallet", nullable = false, precision = 15, scale = 2)
-    private BigDecimal wallet;
+    @Column(name = "amount", precision = 15, scale = 2)
+    private Double amount;
 
     @OneToMany(mappedBy = "client")
     @Fetch(FetchMode.JOIN)
@@ -40,12 +39,12 @@ public class Client {
         this.ridesHistories = ridesHistories;
     }
 
-    public BigDecimal getWallet() {
-        return wallet;
+    public Double getAmount() {
+        return amount;
     }
 
-    public void setWallet(BigDecimal wallet) {
-        this.wallet = wallet;
+    public void setAmount(Double wallet) {
+        this.amount = wallet;
     }
 
     public User getUser() {
@@ -69,7 +68,7 @@ public class Client {
         return "Client{" +
                 "id=" + id +
                 ", user=" + user +
-                ", wallet=" + wallet +
+                ", wallet=" + amount +
                 '}';
     }
 }

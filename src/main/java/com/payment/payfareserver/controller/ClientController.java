@@ -47,7 +47,7 @@ public class ClientController {
         user.setPhone(clientDTO.getUser().getPhone());
         user.setType(typeService.getTypeById(3));
         client.setUser(userService.save(user));
-        client.setWallet(clientDTO.getWallet());
+        client.setAmount(0.00d);
         return clientService.save(client);
     }
 
@@ -62,7 +62,6 @@ public class ClientController {
         user.setPhone(clientDTO.getUser().getPhone());
         user.setType(typeService.getTypeById(clientDTO.getUser().getType().getId()));
         client.setUser(userService.save(user));
-        client.setWallet(clientDTO.getWallet());
         return clientService.update(client);
     }
 
@@ -74,4 +73,30 @@ public class ClientController {
         userService.delete(user.getId());
         return true;
     }
+
+    @PutMapping("/client/addAmount")
+    public String addAmount(@RequestBody ClientDTO clientDTO) {
+        Client client = clientService.getClientById(clientDTO.getId());
+        double currentAmount = client.getAmount();
+        Double amount = (currentAmount) + (clientDTO.getAmount());
+        client.setId(clientDTO.getId());
+        client.setAmount(amount);
+        clientService.save(client);
+        return "Successful";
+    }
+    @PutMapping("/client/transAmount")
+    public String TransAmount(@RequestParam("id") int clientId,@RequestParam("phone") String phone,@RequestParam("amount") double amount) {
+        Client currentClient = clientService.getClientById(clientId);
+        Client anotherClient = clientService.getClientByPhone(phone);
+        if(currentClient.getAmount()<amount)
+            return "Total amount not available";
+        double cAmount = currentClient.getAmount()-amount;
+        double aAmount = anotherClient.getAmount()+amount;
+        currentClient.setAmount(cAmount);
+        anotherClient.setAmount(aAmount);
+        clientService.save(currentClient);
+        clientService.save(anotherClient);
+        return "Successful";
+    }
+
 }

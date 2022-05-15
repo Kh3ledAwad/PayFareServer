@@ -42,6 +42,10 @@ public class ClientService {
         return repository.findClientByUserId(userId);
     }
 
+    public Client getClientByPhone(String phone) {
+        return repository.findClientByUserPhone(phone);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }

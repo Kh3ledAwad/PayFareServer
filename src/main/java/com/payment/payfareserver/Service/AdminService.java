@@ -14,15 +14,19 @@ public class AdminService {
 
     @Autowired
     private AdminRepository repository;
+
     public Admin save(Admin admin) {
         return repository.save(admin);
     }
+
     public Admin update(Admin admin) {
         return repository.save(admin);
     }
+
     public void delete(int adminId) {
         repository.deleteById(adminId);
     }
+
     public List<Admin> getAllAdmins() {
         List<Admin> admins = new ArrayList<>();
         Streamable.of(repository.findAll())
@@ -37,6 +41,7 @@ public class AdminService {
     public Admin getAdminByUserId(int userId) {
         return repository.findAdminByUserId(userId);
     }
+
     public int getCount() {
         return (int) repository.count();
     }

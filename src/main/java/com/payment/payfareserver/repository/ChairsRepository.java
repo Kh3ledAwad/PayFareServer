@@ -10,7 +10,6 @@ import java.util.List;
 public interface ChairsRepository extends JpaRepository<Chairs, Integer> {
 
     Chairs findChairsById(int chairsId);
-
     List<Chairs> findChairsByCarId(int carId);
 
 }

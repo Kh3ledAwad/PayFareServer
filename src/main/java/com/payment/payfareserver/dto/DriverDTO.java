@@ -1,6 +1,5 @@
 package com.payment.payfareserver.dto;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 public class DriverDTO  {
@@ -9,16 +8,16 @@ public class DriverDTO  {
     private  String driverCode;
     private  UserDTO user;
     private  String liceNum;
-    private  BigDecimal wallet;
+    private  Double amount;
     private  Set<TripDTO> trips;
 
-    public DriverDTO(Integer id, CarDTO car, String driverCode, UserDTO user, String liceNum, BigDecimal wallet, Set<TripDTO> trips) {
+    public DriverDTO(Integer id, CarDTO car, String driverCode, UserDTO user, String liceNum, Double amount, Set<TripDTO> trips) {
         this.id = id;
         this.car = car;
         this.driverCode = driverCode;
         this.user = user;
         this.liceNum = liceNum;
-        this.wallet = wallet;
+        this.amount = amount;
         this.trips = trips;
     }
 
@@ -45,8 +44,8 @@ public class DriverDTO  {
         this.liceNum = liceNum;
     }
 
-    public void setWallet(BigDecimal wallet) {
-        this.wallet = wallet;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     public void setTrips(Set<TripDTO> trips) {
@@ -73,8 +72,8 @@ public class DriverDTO  {
         return liceNum;
     }
 
-    public BigDecimal getWallet() {
-        return wallet;
+    public Double getAmount() {
+        return amount;
     }
 
     public Set<TripDTO> getTrips() {
@@ -91,13 +90,13 @@ public class DriverDTO  {
                 Objects.equals(this.driverCode, entity.driverCode) &&
                 Objects.equals(this.user, entity.user) &&
                 Objects.equals(this.liceNum, entity.liceNum) &&
-                Objects.equals(this.wallet, entity.wallet) &&
+                Objects.equals(this.amount, entity.amount) &&
                 Objects.equals(this.trips, entity.trips);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, car, driverCode, user, liceNum, wallet, trips);
+        return Objects.hash(id, car, driverCode, user, liceNum, amount, trips);
     }
 
     @Override
@@ -108,7 +107,7 @@ public class DriverDTO  {
                 "driverCode = " + driverCode + ", " +
                 "user = " + user + ", " +
                 "liceNum = " + liceNum + ", " +
-                "wallet = " + wallet + ", " +
+                "wallet = " + amount + ", " +
                 "trips = " + trips + ")";
     }
 }

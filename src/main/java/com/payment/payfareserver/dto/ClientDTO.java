@@ -1,6 +1,5 @@
 package com.payment.payfareserver.dto;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,13 +9,13 @@ import java.util.Set;
 public class ClientDTO {
     private  Integer id;
     private  UserDTO user;
-    private  BigDecimal wallet;
+    private  Double amount;
     private  Set<RidesHistoryDTO> rideshistories;
 
-    public ClientDTO(Integer id, UserDTO user, BigDecimal wallet, Set<RidesHistoryDTO> rideshistories) {
+    public ClientDTO(Integer id, UserDTO user, Double wallet, Set<RidesHistoryDTO> rideshistories) {
         this.id = id;
         this.user = user;
-        this.wallet = wallet;
+        this.amount = wallet;
         this.rideshistories = rideshistories;
     }
 
@@ -31,8 +30,8 @@ public class ClientDTO {
         this.user = user;
     }
 
-    public void setWallet(BigDecimal wallet) {
-        this.wallet = wallet;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
     public void setRideshistories(Set<RidesHistoryDTO> rideshistories) {
@@ -47,8 +46,8 @@ public class ClientDTO {
         return user;
     }
 
-    public BigDecimal getWallet() {
-        return wallet;
+    public Double getAmount() {
+        return amount;
     }
 
     public Set<RidesHistoryDTO> getRideshistories() {
@@ -62,13 +61,13 @@ public class ClientDTO {
         ClientDTO entity = (ClientDTO) o;
         return Objects.equals(this.id, entity.id) &&
                 Objects.equals(this.user, entity.user) &&
-                Objects.equals(this.wallet, entity.wallet) &&
+                Objects.equals(this.amount, entity.amount) &&
                 Objects.equals(this.rideshistories, entity.rideshistories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, wallet, rideshistories);
+        return Objects.hash(id, user, amount, rideshistories);
     }
 
     @Override
@@ -76,7 +75,7 @@ public class ClientDTO {
         return getClass().getSimpleName() + "(" +
                 "id = " + id + ", " +
                 "user = " + user + ", " +
-                "wallet = " + wallet + ", " +
+                "wallet = " + amount + ", " +
                 "rideshistories = " + rideshistories + ")";
     }
 }

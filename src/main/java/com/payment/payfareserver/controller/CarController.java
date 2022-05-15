@@ -35,9 +35,14 @@ public class CarController {
         return carService.getCarById(carId);
     }
 
+//    @RequestMapping(value = "/car/chairs", method = RequestMethod.GET)
+//    public List<Chairs> getChairsCarById(@RequestParam("id") int carId) {
+//        Car car = carService.getCarById(carId);
+//        return car.getChairs();
+//    }
     @RequestMapping(value = "/car/chairs", method = RequestMethod.GET)
-    public List<Chairs> getChairsCarById(@RequestParam("id") int carId) {
-        Car car = carService.getCarById(carId);
+    public List<Chairs> getChairsCarByQr(@RequestParam("qrcode") String carQrCode) {
+        Car car = carService.getCarByQrCode(carQrCode);
         return car.getChairs();
     }
 
@@ -64,7 +69,7 @@ public class CarController {
 
 
     @RequestMapping(value = "/car/get-by-qr", method = RequestMethod.GET)
-    public Car getCarByQrCode(@RequestParam("qr_code") String qrCode) {
+    public Car getCarByQrCode(@RequestParam("qrcode") String qrCode) {
         return carService.getCarByQrCode(qrCode);
     }
 

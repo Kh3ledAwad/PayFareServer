@@ -44,17 +44,14 @@ public class AdminController {
         return adminService.save(admin);
     }
 
-    @PutMapping("/admin")
-    public Admin update(@RequestBody AdminDTO adminDTO) {
-        Admin admin = new Admin();
-        admin.setId(admin.getId());
-
-        return null;
-    }
-
     @RequestMapping(value = "/admin/get-by-id", method = RequestMethod.GET)
     public Admin getAdminById(@RequestParam("id") int adminId) {
         return adminService.getAdminById(adminId);
+    }
+
+    @RequestMapping(value = "/admin/get-by-user-id", method = RequestMethod.GET)
+    public Admin getAdminByUserId(@RequestParam("id") int userId) {
+        return adminService.getAdminByUserId(userId);
     }
 
 }

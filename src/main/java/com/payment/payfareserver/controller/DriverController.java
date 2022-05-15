@@ -10,7 +10,6 @@ import com.payment.payfareserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
 
@@ -37,10 +36,16 @@ public class DriverController {
         return driverService.getDriverById(driverId);
     }
 
+    @RequestMapping(value = "/driver/get-by-user-id", method = RequestMethod.GET)
+    public Driver getDriverByUserId(@RequestParam("id") int userId) {
+        return driverService.getDriverByUserId(userId);
+    }
+
     @RequestMapping(value = "/driver/get-by-driver-code", method = RequestMethod.GET)
     public Driver getDriverByDriverCode(@RequestParam("driver_code") String driverCode) {
         return driverService.getDriverByDriverCode(driverCode);
     }
+
     @RequestMapping(value = "/driver/phone", method = RequestMethod.GET)
     public Driver getDriverByDriverPhoneNumber(@RequestParam("phone") String phone) {
         return driverService.getDriverByUserPhone(phone);
@@ -61,7 +66,7 @@ public class DriverController {
         driver.setUser(userService.save(user));
         driver.setDriverCode(randomNumber.toString());
         driver.setLiceNum(driverDTO.getLiceNum());
-        driver.setWallet(BigDecimal.valueOf(0.00));
+        driver.setAmount(0.00);
         driver.setCar(carService.getCarById(driverDTO.getCar().getId()));
         return driverService.save(driver);
     }
