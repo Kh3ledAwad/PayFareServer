@@ -27,7 +27,7 @@ public class Traffic {
     private Station station;
 
     @Column(name = "price", nullable = false, precision = 15, scale = 2)
-    private BigDecimal price;
+    private Double price;
 
     @Column(name = "`from`", nullable = false, length = 225)
     private String from;
@@ -77,11 +77,11 @@ public class Traffic {
         this.from = from;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

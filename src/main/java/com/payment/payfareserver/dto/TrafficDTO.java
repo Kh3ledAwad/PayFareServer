@@ -10,13 +10,13 @@ import java.util.Set;
 public class TrafficDTO  {
     private  Integer id;
     private  StationDTO station;
-    private  BigDecimal price;
+    private  Double price;
     private  String from;
     private  String to;
     private  Set<TripDTO> trips;
     private  Set<CarDTO> cars;
 
-    public TrafficDTO(Integer id, StationDTO station, BigDecimal price, String from, String to, Set<TripDTO> trips, Set<CarDTO> cars) {
+    public TrafficDTO(Integer id, StationDTO station, Double price, String from, String to, Set<TripDTO> trips, Set<CarDTO> cars) {
         this.id = id;
         this.station = station;
         this.price = price;
@@ -37,7 +37,7 @@ public class TrafficDTO  {
         this.station = station;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -65,7 +65,7 @@ public class TrafficDTO  {
         return station;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 

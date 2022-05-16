@@ -70,4 +70,8 @@ public class DriverController {
         driver.setCar(carService.getCarById(driverDTO.getCar().getId()));
         return driverService.save(driver);
     }
+//    @PutMapping("/driver/acceptAmount")
+//    public String TransAmount(@RequestParam("id") int clientId,@RequestParam("phone") String phone,@RequestParam("amount") double amount) {
+//
+//    }
 }
