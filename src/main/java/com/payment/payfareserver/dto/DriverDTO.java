@@ -8,6 +8,8 @@ public class DriverDTO  {
     private  String driverCode;
     private  UserDTO user;
     private  String liceNum;
+
+    private Integer status;
     private  Double amount;
     private  Set<TripDTO> trips;
 
@@ -22,6 +24,14 @@ public class DriverDTO  {
     }
 
     public DriverDTO() {
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public void setId(Integer id) {

@@ -37,7 +37,10 @@ public class TripController {
     public Trip getTripById(@RequestParam("id") int tripId) {
         return tripService.getTripById(tripId);
     }
-
+    @RequestMapping(value = "/trip/get-by-owner_id", method = RequestMethod.GET)
+    public List<Trip> getTripsByOwnerId(@RequestParam("id") int ownerId) {
+        return tripService.getTripsByCar_OwnerId(ownerId);
+    }
     @PostMapping("/trip")
     public Trip save(@RequestBody TripDTO tripDTO) {
         Trip trip = new Trip();

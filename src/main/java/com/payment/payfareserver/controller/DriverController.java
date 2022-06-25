@@ -68,6 +68,7 @@ public class DriverController {
         driver.setLiceNum(driverDTO.getLiceNum());
         driver.setAmount(0.00);
         driver.setCar(carService.getCarById(driverDTO.getCar().getId()));
+        driver.setStatus(0);
         return driverService.save(driver);
     }
 //    @PutMapping("/driver/acceptAmount")

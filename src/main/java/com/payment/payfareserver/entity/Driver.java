@@ -26,6 +26,8 @@ public class Driver {
     @Column(name = "driver_code", nullable = false, length = 225,unique = true)
     private String driverCode;
 
+    @Column(name = "status", nullable = false)
+    private Integer status;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false,unique = true)
     @JsonManagedReference
@@ -61,6 +63,14 @@ public class Driver {
 
     public String getLiceNum() {
         return liceNum;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public void setLiceNum(String liceNum) {
