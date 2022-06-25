@@ -36,7 +36,9 @@ public class DriverService {
     public Driver getDriverById(int driverId) {
         return repository.findDriverById(driverId);
     }
-
+    public List<Driver>getDriversByStatus(){
+        return repository.findDriversByStatus(1);
+    }
     public Driver getDriverByDriverCode(String driverCode) {
         return repository.findDriverByDriverCode(driverCode);
     }

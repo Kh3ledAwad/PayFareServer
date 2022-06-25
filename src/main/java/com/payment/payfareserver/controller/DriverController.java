@@ -31,6 +31,11 @@ public class DriverController {
         return driverService.getAllDrivers();
     }
 
+    @GetMapping("/online-driver")
+    public List<Driver> getAllOnlineDrivers() {
+        return driverService.getDriversByStatus();
+    }
+
     @RequestMapping(value = "/driver/get-by-id", method = RequestMethod.GET)
     public Driver getDriverById(@RequestParam("id") int driverId) {
         return driverService.getDriverById(driverId);
