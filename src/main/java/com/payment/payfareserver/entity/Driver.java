@@ -17,7 +17,7 @@ public class Driver {
     @Column(name = "driver_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id")
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)

@@ -2,9 +2,6 @@ package com.payment.payfareserver.dto;
 
 import java.util.Objects;
 
-/**
- * Created by khaledawad on 4/13/2022.
- */
 public class RidesHistoryDTO  {
     private  Integer id;
     private  TripDTO trip;

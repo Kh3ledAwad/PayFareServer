@@ -4,7 +4,10 @@ import com.payment.payfareserver.dto.CarDTO;
 import com.payment.payfareserver.entity.Car;
 import com.payment.payfareserver.entity.Chairs;
 import com.payment.payfareserver.service.*;
+import com.payment.payfareserver.utilities.ScanData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +43,7 @@ public class CarController {
         Car car = carService.getCarById(carId);
         return car.getChairs();
     }
+
     @RequestMapping(value = "/car/chairs", method = RequestMethod.GET)
     public List<Chairs> getChairsCarByQr(@RequestParam("qrcode") String carQrCode) {
         Car car = carService.getCarByQrCode(carQrCode);
@@ -68,14 +72,21 @@ public class CarController {
     }
 
     @RequestMapping(value = "/car/tripPrice", method = RequestMethod.GET)
-    public double getCarTripPrice(@RequestParam("qrcode") String carQr){
+    public double getCarTripPrice(@RequestParam("qrcode") String carQr) {
         Car car = carService.getCarByQrCode(carQr);
-        return  car.getTraffic().getPrice();
+        return car.getTraffic().getPrice();
     }
 
-    @RequestMapping(value = "/car/get-by-qr", method = RequestMethod.GET)
-    public Car getCarByQrCode(@RequestParam("qrcode") String qrCode) {
-        return carService.getCarByQrCode(qrCode);
+    @GetMapping("/car/scan")
+    public ResponseEntity<ScanData> getData(@RequestParam("qrcode") String qrCode) {
+        Car car = carService.getCarByQrCode(qrCode);
+        int carId = car.getId();
+        double price = car.getTraffic().getPrice();
+       String driverPhone = car.getDriver().getUser().getPhone();
+
+
+                ScanData response;
+        return new ResponseEntity<>(new ScanData(carId,price,driverPhone), HttpStatus.OK);
     }
 
     @PostMapping("/car")
@@ -102,12 +113,4 @@ public class CarController {
         }
         return car;
     }
-
-    @PutMapping("/car")
-    public Car update(@RequestBody CarDTO carDTO) {
-        Car car = new Car();
-        car.setId(carDTO.getId());
-        return carService.update(car);
-    }
-
 }

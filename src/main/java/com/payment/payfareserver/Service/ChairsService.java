@@ -29,6 +29,9 @@ public class ChairsService {
     public Chairs getChairsById(int chairsId) {
         return repository.findChairsById(chairsId);
     }
+    public void updateChairsByCarIdAndAndChairNumber(int carId,int chairNum) {
+         repository.updateChairs(carId,chairNum);
+    }
 
     public List<Chairs> getChairsByCarId(int carId) {
         return repository.findChairsByCarId(carId);

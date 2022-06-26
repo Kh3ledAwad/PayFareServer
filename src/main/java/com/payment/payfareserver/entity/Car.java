@@ -54,10 +54,10 @@ public class Car {
     @Fetch(FetchMode.JOIN)
     private Set<Trip> trips = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "car")
+    @OneToOne(mappedBy = "car")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Set<Driver> drivers = new LinkedHashSet<>();
+    private Driver driver ;
 
     @OneToMany(mappedBy = "car")
     @JsonBackReference
@@ -136,12 +136,12 @@ public class Car {
         this.trips = trips;
     }
 
-    public Set<Driver> getDrivers() {
-        return drivers;
+    public Driver getDriver() {
+        return driver;
     }
 
-    public void setDrivers(Set<Driver> drivers) {
-        this.drivers = drivers;
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 
     public List<Chairs> getChairs() {

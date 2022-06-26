@@ -1,5 +1,6 @@
 package com.payment.payfareserver.controller;
 
+import com.payment.payfareserver.dto.ChairsDTO;
 import com.payment.payfareserver.dto.DriverDTO;
 import com.payment.payfareserver.entity.Client;
 import com.payment.payfareserver.entity.Driver;
@@ -25,6 +26,8 @@ public class DriverController {
     private TypeService typeService;
     @Autowired
     private CarService carService;
+    @Autowired
+    private ChairsService chairsService;
 
     @GetMapping("/driver")
     public List<Driver> getAllDrivers() {
@@ -82,17 +85,20 @@ public class DriverController {
         driverService.changeStatus(value, id);
         return true;
     }
+
     @PutMapping("/driver/acceptAmount")
-    public String acceptAmount(@RequestParam("clientId") int clientId,@RequestParam("driverPhone") String phone,@RequestParam("amount") double amount) {
+    public String acceptAmount(@RequestParam("clientId") int clientId, @RequestParam("carId") int carId,@RequestParam("driverPhone") String phone, @RequestParam("amount") double amount, @RequestBody List<Integer> chairNumList) {
         Client client = clientService.getClientById(clientId);
         Driver driver = driverService.getDriverByUserPhone(phone);
         double clientAmount = client.getAmount();
-        if(clientAmount>=amount){
-            driverService.acceptAmount(amount,driver.getId());
-            clientService.updateWallet(amount,clientId);
-        }
-        else {
+        if (clientAmount >= amount) {
+            driverService.acceptAmount(driver.getAmount()+amount, driver.getId());
+            clientService.updateWallet(amount, clientId);
+        } else {
             return "Total amount not available";
+        }
+        for(int i :chairNumList){
+            chairsService.updateChairsByCarIdAndAndChairNumber(carId,i);
         }
         return "Successful";
     }
