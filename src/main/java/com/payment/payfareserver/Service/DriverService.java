@@ -60,4 +60,7 @@ public class DriverService {
     public void changeStatus(int value, int id) {
         repository.changeDriverStatus(value, id);
     }
+    public void acceptAmount(double amount,int id){
+         repository.changeAmount(amount,id);
+    }
 }

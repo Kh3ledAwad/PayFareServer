@@ -46,6 +46,10 @@ public class ClientService {
         return repository.findClientByUserPhone(phone);
     }
 
+    public void updateWallet(double val, int id) {
+        repository.updateWallet(val, id);
+    }
+
     public int getCount() {
         return (int) repository.count();
     }

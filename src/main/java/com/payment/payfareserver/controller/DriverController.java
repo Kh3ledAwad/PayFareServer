@@ -1,12 +1,10 @@
 package com.payment.payfareserver.controller;
 
 import com.payment.payfareserver.dto.DriverDTO;
+import com.payment.payfareserver.entity.Client;
 import com.payment.payfareserver.entity.Driver;
 import com.payment.payfareserver.entity.User;
-import com.payment.payfareserver.service.CarService;
-import com.payment.payfareserver.service.DriverService;
-import com.payment.payfareserver.service.TypeService;
-import com.payment.payfareserver.service.UserService;
+import com.payment.payfareserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +19,8 @@ public class DriverController {
     private DriverService driverService;
     @Autowired
     private UserService userService;
+    @Autowired
+    ClientService clientService;
     @Autowired
     private TypeService typeService;
     @Autowired
@@ -82,8 +82,18 @@ public class DriverController {
         driverService.changeStatus(value, id);
         return true;
     }
-//    @PutMapping("/driver/acceptAmount")
-//    public String TransAmount(@RequestParam("id") int clientId,@RequestParam("phone") String phone,@RequestParam("amount") double amount) {
-//
-//    }
+    @PutMapping("/driver/acceptAmount")
+    public String acceptAmount(@RequestParam("clientId") int clientId,@RequestParam("driverPhone") String phone,@RequestParam("amount") double amount) {
+        Client client = clientService.getClientById(clientId);
+        Driver driver = driverService.getDriverByUserPhone(phone);
+        double clientAmount = client.getAmount();
+        if(clientAmount>=amount){
+            driverService.acceptAmount(amount,driver.getId());
+            clientService.updateWallet(amount,clientId);
+        }
+        else {
+            return "Total amount not available";
+        }
+        return "Successful";
+    }
 }
