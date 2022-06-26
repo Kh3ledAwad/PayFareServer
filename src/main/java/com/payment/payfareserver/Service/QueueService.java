@@ -1,13 +1,10 @@
 package com.payment.payfareserver.service;
 
-import com.payment.payfareserver.entity.Admin;
 import com.payment.payfareserver.entity.Queue;
 import com.payment.payfareserver.repository.QueueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,10 +25,12 @@ public class QueueService {
         return repository.save(queue);
     }
 
-    public Queue getLastPersonInQueue() {
+    public Queue getLastDriverInQueue() {
         return repository.findTopByOrderByIdDesc();
     }
-
+    public Queue getTopDriverInQueue(){
+        return repository.findQueueByQueueNum(1);
+    }
     public long getCount() {
         return repository.count();
     }

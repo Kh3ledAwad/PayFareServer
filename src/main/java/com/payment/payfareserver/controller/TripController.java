@@ -37,37 +37,15 @@ public class TripController {
     public Trip getTripById(@RequestParam("id") int tripId) {
         return tripService.getTripById(tripId);
     }
+
     @RequestMapping(value = "/trip/get-by-owner_id", method = RequestMethod.GET)
     public List<Trip> getTripsByOwnerId(@RequestParam("id") int ownerId) {
         return tripService.getTripsByCar_OwnerId(ownerId);
     }
-    @PostMapping("/trip")
-    public Trip save(@RequestBody TripDTO tripDTO) {
-        Trip trip = new Trip();
-        trip.setTraffic( trafficService.getTrafficById(tripDTO.getTraffic().getId()));
-        trip.setAdmin(adminService.getAdminById(tripDTO.getAdmin().getId()));
-        trip.setDriver(driverService.getDriverById(tripDTO.getDriver().getId()));
-        trip.setCar( carService.getCarById(tripDTO.getCar().getId()));
-        trip.setPrice(tripDTO.getPrice());
 
-        Blockchain newBlock = new Blockchain();
-        Blockchain oldBlock =blockchainService.getLastBlock();
-        BlockDTO blockDto = new BlockDTO();
-        blockDto.setData(SHA256Helper.randomString(20));
-        if(blockchainService.getCount()==0) {
-            blockDto.setPreviousHash("0000000000000000000000000000000000000000000000000000000000000000");
-            blockDto.setNonce(0);
-        }else{
-            blockDto.setPreviousHash(oldBlock.getHash());
-        }
-        blockDto.generateHash();
-        blockDto.setNonce(oldBlock.getNonce());
-        blockDto.incrementNonce();
-        newBlock.setHash(blockDto.getHash());
-        newBlock.setPreviousHash(blockDto.getPreviousHash());
-        newBlock.setNonce(blockDto.getNonce());
-        newBlock.setTrip(tripService.save(trip));
-        blockchainService.save(newBlock);
-        return trip;
+    @RequestMapping(value = "/trip/get-by-car_id", method = RequestMethod.GET)
+    public List<Trip> getTripsByCarId(@RequestParam("carId") int carId) {
+        return tripService.getTripsByCarId(carId);
     }
+
 }

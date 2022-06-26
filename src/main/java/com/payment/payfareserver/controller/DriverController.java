@@ -29,6 +29,7 @@ public class DriverController {
     @Autowired
     private ChairsService chairsService;
 
+
     @GetMapping("/driver")
     public List<Driver> getAllDrivers() {
         return driverService.getAllDrivers();
@@ -86,20 +87,4 @@ public class DriverController {
         return true;
     }
 
-    @PutMapping("/driver/acceptAmount")
-    public String acceptAmount(@RequestParam("clientId") int clientId, @RequestParam("carId") int carId,@RequestParam("driverPhone") String phone, @RequestParam("amount") double amount, @RequestBody List<Integer> chairNumList) {
-        Client client = clientService.getClientById(clientId);
-        Driver driver = driverService.getDriverByUserPhone(phone);
-        double clientAmount = client.getAmount();
-        if (clientAmount >= amount) {
-            driverService.acceptAmount(driver.getAmount()+amount, driver.getId());
-            clientService.updateWallet(amount, clientId);
-        } else {
-            return "Total amount not available";
-        }
-        for(int i :chairNumList){
-            chairsService.updateChairsByCarIdAndAndChairNumber(carId,i);
-        }
-        return "Successful";
-    }
 }

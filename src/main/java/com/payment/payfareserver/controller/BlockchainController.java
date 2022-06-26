@@ -14,8 +14,6 @@ import java.util.List;
 @RestController
 public class BlockchainController {
     @Autowired
-    private TripService tripService;
-    @Autowired
     BlockchainService blockchainService;
 
     @GetMapping("/blocks")

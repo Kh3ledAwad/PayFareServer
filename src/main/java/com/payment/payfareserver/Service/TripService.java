@@ -29,7 +29,11 @@ public class TripService {
     public Trip getTripById(int tripId) {
         return repository.findTripById(tripId);
     }
+
     public List<Trip> getTripsByCar_OwnerId(int ownerId){return repository.findTripsByCar_OwnerId(ownerId);}
+    public List<Trip> getTripsByCarId(int carId){
+        return repository.findTripsByCarId(carId);
+    }
     public int getCount() {
         return (int) repository.count();
     }

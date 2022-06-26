@@ -2,10 +2,9 @@ package com.payment.payfareserver.controller;
 
 import com.payment.payfareserver.dto.ClientDTO;
 import com.payment.payfareserver.entity.Client;
+import com.payment.payfareserver.entity.Driver;
 import com.payment.payfareserver.entity.User;
-import com.payment.payfareserver.service.ClientService;
-import com.payment.payfareserver.service.TypeService;
-import com.payment.payfareserver.service.UserService;
+import com.payment.payfareserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,10 @@ public class ClientController {
     private UserService userService;
     @Autowired
     private TypeService typeService;
-
+    @Autowired
+    private ChairsService chairsService;
+    @Autowired
+    private DriverService driverService;
     @GetMapping("/client")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
@@ -85,7 +87,7 @@ public class ClientController {
         return "Successful";
     }
     @PutMapping("/client/transAmount")
-    public String TransAmount(@RequestParam("id") int clientId,@RequestParam("phone") String phone,@RequestParam("amount") double amount) {
+    public String transAmount(@RequestParam("id") int clientId,@RequestParam("phone") String phone,@RequestParam("amount") double amount) {
         Client currentClient = clientService.getClientById(clientId);
         Client anotherClient = clientService.getClientByPhone(phone);
         if(currentClient.getAmount()<amount)
@@ -96,6 +98,23 @@ public class ClientController {
         anotherClient.setAmount(aAmount);
         clientService.save(currentClient);
         clientService.save(anotherClient);
+        return "Successful";
+    }
+    @PutMapping("/client/payfare")
+     public String payFare(@RequestParam("clientId") int clientId, @RequestParam("carId") int carId
+            ,@RequestParam("driverPhone") String phone, @RequestParam("amount") double amount, @RequestBody List<Integer> chairNumList){
+        Client client = clientService.getClientById(clientId);
+        Driver driver = driverService.getDriverByUserPhone(phone);
+        double clientAmount = client.getAmount();
+        if (clientAmount >= amount) {
+            driverService.acceptAmount(driver.getAmount()+amount, driver.getId());
+            clientService.updateWallet(amount, clientId);
+        } else {
+            return "Total amount not available";
+        }
+        for(int i :chairNumList){
+            chairsService.updateChairsByCarIdAndAndChairNumber(carId,i);
+        }
         return "Successful";
     }
 

@@ -8,7 +8,7 @@ import java.util.Set;
 public class TripDTO {
     private  Integer id;
     private  LocalDateTime date;
-    private  BigDecimal price;
+    private  Double price;
     private  AdminDTO admin;
     private  CarDTO car;
     private  DriverDTO driver;
@@ -16,7 +16,7 @@ public class TripDTO {
     private  Set<RidesHistoryDTO> ridesHistories;
     private  Set<BlockDTO> block;
 
-    public TripDTO(Integer id, LocalDateTime date, BigDecimal price, AdminDTO admin, CarDTO car, DriverDTO driver, TrafficDTO traffic, Set<RidesHistoryDTO> ridesHistories, Set<BlockDTO> block) {
+    public TripDTO(Integer id, LocalDateTime date, Double price, AdminDTO admin, CarDTO car, DriverDTO driver, TrafficDTO traffic, Set<RidesHistoryDTO> ridesHistories, Set<BlockDTO> block) {
         this.id = id;
         this.date = date;
         this.price = price;
@@ -39,7 +39,7 @@ public class TripDTO {
         this.date = date;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -75,7 +75,7 @@ public class TripDTO {
         return date;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 

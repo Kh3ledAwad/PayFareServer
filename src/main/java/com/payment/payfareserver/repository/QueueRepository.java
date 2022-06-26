@@ -21,5 +21,5 @@ public interface QueueRepository extends JpaRepository<Queue, Integer> {
     void deleteTop ();
     Queue findTopByOrderByIdDesc();
     List<Queue> findAllByOrderByQueueNumAsc();
-
+    Queue findQueueByQueueNum(int queueNum);
 }

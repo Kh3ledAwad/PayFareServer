@@ -32,6 +32,10 @@ public class CarController {
     public List<Car> getAllCars() {
         return carService.getAllCars();
     }
+//    @GetMapping("/car/trips")
+//    public List<Car> getAllTripsCar(@RequestParam("ownerId")int ownerId) {
+//        Car car = carService.
+//    }
 
     @RequestMapping(value = "/car/get-by-id", method = RequestMethod.GET)
     public Car getCarById(@RequestParam("id") int carId) {
@@ -83,9 +87,7 @@ public class CarController {
         int carId = car.getId();
         double price = car.getTraffic().getPrice();
        String driverPhone = car.getDriver().getUser().getPhone();
-
-
-                ScanData response;
+       ScanData response;
         return new ResponseEntity<>(new ScanData(carId,price,driverPhone), HttpStatus.OK);
     }
 
