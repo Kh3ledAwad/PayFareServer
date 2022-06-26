@@ -36,9 +36,11 @@ public class DriverService {
     public Driver getDriverById(int driverId) {
         return repository.findDriverById(driverId);
     }
-    public List<Driver>getDriversByStatus(){
+
+    public List<Driver> getDriversByStatus() {
         return repository.findDriversByStatus(1);
     }
+
     public Driver getDriverByDriverCode(String driverCode) {
         return repository.findDriverByDriverCode(driverCode);
     }
@@ -53,5 +55,9 @@ public class DriverService {
 
     public Driver getDriverByUserId(int userId) {
         return repository.findDriverByUserId(userId);
+    }
+
+    public void changeStatus(int value, int id) {
+        repository.changeDriverStatus(value, id);
     }
 }

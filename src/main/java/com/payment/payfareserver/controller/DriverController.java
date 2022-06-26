@@ -76,6 +76,12 @@ public class DriverController {
         driver.setStatus(0);
         return driverService.save(driver);
     }
+
+    @PutMapping("/driver/changeStatus")
+    public boolean TransAmount(@RequestParam("id") int id, @RequestParam("value") int value) {
+        driverService.changeStatus(value, id);
+        return true;
+    }
 //    @PutMapping("/driver/acceptAmount")
 //    public String TransAmount(@RequestParam("id") int clientId,@RequestParam("phone") String phone,@RequestParam("amount") double amount) {
 //

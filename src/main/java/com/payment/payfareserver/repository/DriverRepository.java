@@ -21,4 +21,8 @@ public interface DriverRepository extends JpaRepository<Driver, Integer> {
     Driver findDriverByUserPhone(String phone);
 
     List<Driver> findDriversByStatus(int stu);
+    @Transactional
+    @Modifying
+    @Query("update Driver d set d.status =?1 where d.id=?2")
+    void changeDriverStatus(int value,int id);
 }
