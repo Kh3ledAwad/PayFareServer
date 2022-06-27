@@ -24,6 +24,9 @@ public class RidesHistory {
     @Fetch(FetchMode.JOIN)
     private Trip trip;
 
+    @Column(name = "amountPay", nullable = false, precision = 15, scale = 2)
+    private Double amountPay ;
+
     public Integer getId() {
         return id;
     }
@@ -48,4 +51,11 @@ public class RidesHistory {
         this.trip = trip;
     }
 
+    public Double getAmountPay() {
+        return amountPay;
+    }
+
+    public void setAmountPay(Double amountPay) {
+        this.amountPay = amountPay;
+    }
 }

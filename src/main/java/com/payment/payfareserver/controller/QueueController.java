@@ -75,7 +75,7 @@ public class QueueController {
         blockchainService.save(newBlock);
 
         queueService.deleteTopFromQueue();
-        if (queueService.getCount() > 1) {
+        if (queueService.getCount() >=1) {
             queueService.updateQueue();
         }
         return "Successful Delete And Create New Trip";

@@ -1,13 +1,16 @@
 package com.payment.payfareserver.controller;
 
 import com.payment.payfareserver.dto.ClientDTO;
-import com.payment.payfareserver.entity.Client;
-import com.payment.payfareserver.entity.Driver;
-import com.payment.payfareserver.entity.User;
+import com.payment.payfareserver.entity.*;
 import com.payment.payfareserver.service.*;
+import com.payment.payfareserver.utilities.ClientTrips;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -22,6 +25,11 @@ public class ClientController {
     private TypeService typeService;
     @Autowired
     private ChairsService chairsService;
+    @Autowired
+    private TripService tripService;
+    @Autowired
+    private RidesHistoryService ridesHistoryService;
+
     @Autowired
     private DriverService driverService;
     @GetMapping("/client")
@@ -115,7 +123,28 @@ public class ClientController {
         for(int i :chairNumList){
             chairsService.updateChairsByCarIdAndAndChairNumber(carId,i);
         }
+        Trip currentTrip = tripService.getLastCarTrip(carId);
+        RidesHistory ridesHistory = new RidesHistory();
+        ridesHistory.setClient(clientService.getClientById(clientId));
+        ridesHistory.setTrip(currentTrip);
+        ridesHistory.setAmountPay(amount);
+        ridesHistoryService.save(ridesHistory);
         return "Successful";
+    }
+    @GetMapping("/client/getRidesHistory")
+    public ResponseEntity<List<ClientTrips>> getAllClientTrips(@RequestParam("id")int clientId){
+        List<RidesHistory> historyList = ridesHistoryService.getAllRidesHistoryByClientID(clientId);
+        List<ClientTrips>tripsList = new ArrayList<>();
+        for(RidesHistory rs :historyList){
+            int ridsHistoryId=rs.getId();
+            String carPlateNum=rs.getTrip().getCar().getCarPlateNum();
+            String driverPhone=rs.getTrip().getDriver().getUser().getPhone();
+            Double amountPay=rs.getAmountPay();
+            LocalDateTime date = rs.getTrip().getDate();
+            tripsList.add(new ClientTrips(ridsHistoryId,carPlateNum,driverPhone,amountPay,date));
+        }
+       return new ResponseEntity<>(tripsList, HttpStatus.OK);
+
     }
 
 }

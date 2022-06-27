@@ -10,6 +10,7 @@ import java.util.List;
 public interface TripRepository extends JpaRepository<Trip, Integer> {
 
     Trip findTripById(int tripId);
+    Trip  findTopByCarIdOrderByIdDesc(int carId);
     List<Trip> findTripsByCar_OwnerId(int ownerId);
 
     List<Trip>findTripsByCarId(int carId);
