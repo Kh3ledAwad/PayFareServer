@@ -17,7 +17,7 @@ public class Admin {
     @Column(name = "admin_id", nullable = false)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "station_id")
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)

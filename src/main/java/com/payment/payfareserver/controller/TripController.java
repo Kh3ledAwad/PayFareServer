@@ -17,16 +17,6 @@ public class TripController {
 
     @Autowired
     private TripService tripService;
-    @Autowired
-    private TrafficService trafficService;
-    @Autowired
-    private AdminService adminService;
-    @Autowired
-    private DriverService driverService;
-    @Autowired
-    private CarService carService;
-    @Autowired
-    private BlockchainService blockchainService;
 
     @GetMapping("/trip")
     public List<Trip> getAllTrips() {

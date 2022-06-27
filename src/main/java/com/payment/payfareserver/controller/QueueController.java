@@ -20,6 +20,9 @@ public class QueueController {
     TripService tripService;
     @Autowired
     private DriverService driverService;
+
+    @Autowired
+    private AdminService adminService;
     @Autowired
     private BlockchainService blockchainService;
     @GetMapping("/queue")
@@ -41,16 +44,17 @@ public class QueueController {
     }
 
     @DeleteMapping("/delete-top")
-    public String deleteTop() {
+    public String deleteTop(@RequestParam("adminId") int adminId) {
         Queue topInQueue = queueService.getTopDriverInQueue();
         Driver driver = driverService.getDriverByDriverCode(topInQueue.getDriverCode());
         Car car = carService.getCarByCarCode(driver.getCar().getCarCode());
         Trip trip = new Trip();
         trip.setTraffic(car.getTraffic());
-        //trip.setAdmin();
+        trip.setAdmin(adminService.getAdminById(adminId));
         trip.setDriver(car.getDriver());
         trip.setCar(car);
         trip.setPrice((car.getTraffic().getPrice()*car.getCarCapacity()));
+
         Blockchain newBlock = new Blockchain();
         Blockchain oldBlock =blockchainService.getLastBlock();
         BlockDTO blockDto = new BlockDTO();
@@ -60,15 +64,16 @@ public class QueueController {
             blockDto.setNonce(0);
         }else{
             blockDto.setPreviousHash(oldBlock.getHash());
+            blockDto.setNonce(oldBlock.getNonce());
+            blockDto.incrementNonce();
         }
         blockDto.generateHash();
-        blockDto.setNonce(oldBlock.getNonce());
-        blockDto.incrementNonce();
         newBlock.setHash(blockDto.getHash());
         newBlock.setPreviousHash(blockDto.getPreviousHash());
         newBlock.setNonce(blockDto.getNonce());
         newBlock.setTrip(tripService.save(trip));
         blockchainService.save(newBlock);
+
         queueService.deleteTopFromQueue();
         if (queueService.getCount() > 1) {
             queueService.updateQueue();

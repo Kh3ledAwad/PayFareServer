@@ -38,16 +38,16 @@ public class Station {
     @Fetch(FetchMode.JOIN)
     private List<Car> cars = new ArrayList<>();
 
-    @OneToOne(mappedBy = "station")
+    @OneToMany(mappedBy = "station")
     @JsonBackReference
     @Fetch(FetchMode.JOIN)
-    private Admin admins ;
+    private Set<Admin> admins = new LinkedHashSet<>();
 
-    public Admin getAdmins() {
+    public Set<Admin> getAdmins() {
         return admins;
     }
 
-    public void setAdmins(Admin admins) {
+    public void setAdmins(Set<Admin> admins) {
         this.admins = admins;
     }
 
