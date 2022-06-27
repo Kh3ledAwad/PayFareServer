@@ -14,17 +14,29 @@ import java.util.Set;
 public class CarTrips {
     @JsonProperty("carNumber")
     private int carNumber;
+    @JsonProperty("carPlateNum")
+    private String carPlateNum;
     @JsonProperty("trips")
     private Set<Trip> trips;
     @JsonProperty("totalPrice")
     private Double total;
+
     public CarTrips() {
     }
 
-    public CarTrips(int carNumber, Set<Trip> trips, Double total) {
+    public CarTrips(int carNumber, String carPlateNum, Set<Trip> trips, Double total) {
         this.carNumber = carNumber;
+        this.carPlateNum = carPlateNum;
         this.trips = trips;
         this.total = total;
+    }
+
+    public String getCarPlateNum() {
+        return carPlateNum;
+    }
+
+    public void setCarPlateNum(String carPlateNum) {
+        this.carPlateNum = carPlateNum;
     }
 
     public int getCarNumber() {

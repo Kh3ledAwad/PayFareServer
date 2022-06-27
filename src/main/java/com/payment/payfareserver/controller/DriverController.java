@@ -1,8 +1,6 @@
 package com.payment.payfareserver.controller;
 
-import com.payment.payfareserver.dto.ChairsDTO;
 import com.payment.payfareserver.dto.DriverDTO;
-import com.payment.payfareserver.entity.Client;
 import com.payment.payfareserver.entity.Driver;
 import com.payment.payfareserver.entity.User;
 import com.payment.payfareserver.service.*;

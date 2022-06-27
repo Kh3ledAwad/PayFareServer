@@ -82,12 +82,13 @@ public class OwnerController {
         List<CarTrips>tripsList = new ArrayList<>();
         for(Car car :ownerCars){
             int carNumber = num;
+            String code =car.getCarPlateNum();
             double totalPrice=0.0;
             Set<Trip> trips = car.getTrips();
             for(Trip t :trips){
                 totalPrice+=t.getPrice();
             }
-           tripsList.add(new CarTrips(num,trips,totalPrice));
+           tripsList.add(new CarTrips(num,code,trips,totalPrice));
             num++;
         }
         return new ResponseEntity<>(tripsList,HttpStatus.OK);

@@ -15,11 +15,17 @@ public interface QueueRepository extends JpaRepository<Queue, Integer> {
     @Modifying
     @Query("update Queue q set q.queueNum = q.queueNum-1")
     void updateQueue();
+
     @Transactional
     @Modifying
     @Query("delete from Queue q where q.queueNum = 1")
-    void deleteTop ();
+    void deleteTop();
+
     Queue findTopByOrderByIdDesc();
+
     List<Queue> findAllByOrderByQueueNumAsc();
+
     Queue findQueueByQueueNum(int queueNum);
+
+    Queue findQueueByDriverCode(int driverCode);
 }
