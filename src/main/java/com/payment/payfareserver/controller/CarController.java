@@ -86,8 +86,8 @@ public class CarController {
         Car car = carService.getCarByQrCode(qrCode);
         int carId = car.getId();
         double price = car.getTraffic().getPrice();
-       String driverPhone = car.getDriver().getUser().getPhone();
-       ScanData response;
+        String driverPhone = car.getDriver().getUser().getPhone();
+        ScanData response;
         return new ResponseEntity<>(new ScanData(carId,price,driverPhone), HttpStatus.OK);
     }
 
