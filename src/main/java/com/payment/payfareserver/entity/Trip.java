@@ -1,7 +1,6 @@
 package com.payment.payfareserver.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -31,24 +30,28 @@ public class Trip {
     @JoinColumn(name = "admin_id", nullable = false)
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     private Admin admin;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "car_id", nullable = false)
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     private Car car;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "driver_id", nullable = false)
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     private Driver driver;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "traffic_id", nullable = false)
     @JsonManagedReference
     @Fetch(FetchMode.JOIN)
+    @JsonIgnore
     private Traffic traffic;
 
     @OneToMany(mappedBy = "trip")
@@ -84,7 +87,7 @@ public class Trip {
     public void setPrice(Double price) {
         this.price = price;
     }
-
+    @JsonIgnore
     public Admin getAdmin() {
         return admin;
     }
@@ -92,7 +95,7 @@ public class Trip {
     public void setAdmin(Admin admin) {
         this.admin = admin;
     }
-
+    @JsonIgnore
     public Car getCar() {
         return car;
     }
@@ -100,7 +103,7 @@ public class Trip {
     public void setCar(Car car) {
         this.car = car;
     }
-
+    @JsonIgnore
     public Driver getDriver() {
         return driver;
     }
@@ -108,7 +111,7 @@ public class Trip {
     public void setDriver(Driver driver) {
         this.driver = driver;
     }
-
+    @JsonIgnore
     public Traffic getTraffic() {
         return traffic;
     }
