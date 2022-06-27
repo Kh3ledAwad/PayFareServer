@@ -44,8 +44,7 @@ public class CarController {
 
     @RequestMapping(value = "/car/chairsbyid", method = RequestMethod.GET)
     public List<Chairs> getChairsCarById(@RequestParam("id") int carId) {
-        Car car = carService.getCarById(carId);
-        return car.getChairs();
+        return chairsService.getChairsByCarId(carId);
     }
 
     @RequestMapping(value = "/car/chairs", method = RequestMethod.GET)
