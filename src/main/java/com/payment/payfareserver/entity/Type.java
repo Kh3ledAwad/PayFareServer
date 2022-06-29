@@ -20,7 +20,6 @@ public class Type {
     private String name;
     @OneToMany(mappedBy = "type")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<User> users = new LinkedHashSet<>();
 
     public Set<User> getUsers() {
