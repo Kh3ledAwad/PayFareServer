@@ -17,10 +17,9 @@ public class Driver {
     @Column(name = "driver_id", nullable = false)
     private Integer id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "car_id")
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private Car car;
 
     @Column(name = "driver_code", nullable = false, length = 225,unique = true)
@@ -28,10 +27,9 @@ public class Driver {
 
     @Column(name = "status", nullable = false)
     private Integer status;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false,unique = true)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private User user;
 
     @Column(name = "lice_num", nullable = false, length = 225,unique = true)
@@ -42,7 +40,6 @@ public class Driver {
 
     @OneToMany(mappedBy = "driver")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Trip> trips = new LinkedHashSet<>();
 
     public Set<Trip> getTrips() {

@@ -39,7 +39,6 @@ public class Owner {
 
     @OneToMany(mappedBy = "owner")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private List<Car> cars = new ArrayList<>();
 
     public Integer getId() {

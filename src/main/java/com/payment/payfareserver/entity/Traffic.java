@@ -20,10 +20,9 @@ public class Traffic {
     @Column(name = "traffic_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "station_id",nullable = false)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private Station station;
 
     @Column(name = "price", nullable = false, precision = 15, scale = 2)
@@ -37,12 +36,10 @@ public class Traffic {
 
     @OneToMany(mappedBy = "traffic")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Trip> trips = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "traffic")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private List<Car> cars = new ArrayList<>();
 
     public List<Car> getCars() {

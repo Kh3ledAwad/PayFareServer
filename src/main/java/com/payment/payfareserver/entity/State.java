@@ -23,7 +23,6 @@ public class State {
     private String stateNameEn;
 
     @OneToMany(mappedBy = "state")
-    @Fetch(FetchMode.JOIN)
     @JsonBackReference
     private Set<City> cities = new LinkedHashSet<>();
 

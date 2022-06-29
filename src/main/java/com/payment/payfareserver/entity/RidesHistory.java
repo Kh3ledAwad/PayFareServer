@@ -18,10 +18,9 @@ public class RidesHistory {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "trip_id")
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private Trip trip;
 
     @Column(name = "amountPay", nullable = false, precision = 15, scale = 2)

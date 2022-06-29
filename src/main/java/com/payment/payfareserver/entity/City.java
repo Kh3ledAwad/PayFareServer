@@ -17,9 +17,8 @@ public class City {
     @Column(name = "city_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "state_id", nullable = false)
-    @Fetch(FetchMode.JOIN)
     @JsonManagedReference
     private State state;
 
@@ -31,7 +30,6 @@ public class City {
 
     @OneToMany(mappedBy = "city")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Station> stations = new LinkedHashSet<>();
 
     public Integer getId() {

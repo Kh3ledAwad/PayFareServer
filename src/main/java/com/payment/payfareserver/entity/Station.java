@@ -19,9 +19,8 @@ public class Station {
     @Column(name = "station_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id", nullable = false)
-    @Fetch(FetchMode.JOIN)
     @JsonManagedReference
     private City city;
 
@@ -30,17 +29,14 @@ public class Station {
 
     @OneToMany(mappedBy = "station")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Traffic> traffic = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "mainStation")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private List<Car> cars = new ArrayList<>();
 
     @OneToMany(mappedBy = "station")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Admin> admins = new LinkedHashSet<>();
 
     public Set<Admin> getAdmins() {

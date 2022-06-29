@@ -23,10 +23,9 @@ public class Blockchain {
     @Column(name = "previousHash", nullable = false, length = 225)
     private String previousHash;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "trip_id")
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Trip trip;

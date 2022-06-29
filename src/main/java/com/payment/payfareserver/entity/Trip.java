@@ -26,42 +26,36 @@ public class Trip {
     @Column(name = "price", nullable = false, precision = 15, scale = 2)
     private Double price;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "admin_id", nullable = false)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     @JsonIgnore
     private Admin admin;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "car_id", nullable = false)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     @JsonIgnore
     private Car car;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "driver_id", nullable = false)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     @JsonIgnore
     private Driver driver;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "traffic_id", nullable = false)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     @JsonIgnore
     private Traffic traffic;
 
     @OneToMany(mappedBy = "trip")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<RidesHistory> ridesHistories = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "trip")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Blockchain> block = new LinkedHashSet<>();
 
     public Integer getId() {
