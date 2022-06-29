@@ -17,21 +17,18 @@ public class Admin {
     @Column(name = "admin_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "station_id")
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private Station station;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false,unique = true)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private User user;
 
     @OneToMany(mappedBy = "admin")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Trip> trips = new LinkedHashSet<>();
 
     public Set<Trip> getTrips() {

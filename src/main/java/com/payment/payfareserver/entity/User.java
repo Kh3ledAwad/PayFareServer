@@ -33,25 +33,21 @@ public class User {
     @Pattern(regexp = "^01[0125][0-9]{8}$")
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id", nullable = false)
-    @Fetch(FetchMode.JOIN)
     @JsonManagedReference
     private Type type;
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Driver> drivers = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Client> clients = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Admin> admins = new LinkedHashSet<>();
 
     public Integer getId() {

@@ -17,9 +17,8 @@ public class Client {
     @Column(name = "client_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false,unique = true)
-    @Fetch(FetchMode.JOIN)
     @JsonManagedReference
     private User user;
 
@@ -27,7 +26,6 @@ public class Client {
     private Double amount;
 
     @OneToMany(mappedBy = "client")
-    @Fetch(FetchMode.JOIN)
     @JsonBackReference
     private Set<RidesHistory> ridesHistories = new LinkedHashSet<>();
 

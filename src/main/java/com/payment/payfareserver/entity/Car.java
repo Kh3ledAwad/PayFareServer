@@ -22,22 +22,19 @@ public class Car {
     @Column(name = "car_code", nullable = false, length = 225, unique = true)
     private String carCode;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "main_station_id", nullable = false)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private Station mainStation;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "traffic_id", nullable = false)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private Traffic traffic;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id", nullable = false)
     @JsonManagedReference
-    @Fetch(FetchMode.JOIN)
     private Owner owner;
 
     @Column(name = "car_plate_num", nullable = false, length = 225, unique = true)
@@ -51,17 +48,14 @@ public class Car {
 
     @OneToMany(mappedBy = "car")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Set<Trip> trips = new LinkedHashSet<>();
 
     @OneToOne(mappedBy = "car")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private Driver driver ;
 
     @OneToMany(mappedBy = "car")
     @JsonBackReference
-    @Fetch(FetchMode.JOIN)
     private List<Chairs> chairs = new ArrayList<>();
 
     public Integer getId() {
