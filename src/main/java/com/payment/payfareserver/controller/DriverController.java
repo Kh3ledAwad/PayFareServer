@@ -2,6 +2,7 @@ package com.payment.payfareserver.controller;
 
 import com.payment.payfareserver.dto.DriverDTO;
 import com.payment.payfareserver.entity.Driver;
+import com.payment.payfareserver.entity.Queue;
 import com.payment.payfareserver.entity.User;
 import com.payment.payfareserver.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,8 @@ public class DriverController {
     private CarService carService;
     @Autowired
     private ChairsService chairsService;
-
+    @Autowired
+    private QueueService queueService;
 
     @GetMapping("/driver")
     public List<Driver> getAllDrivers() {
@@ -84,5 +86,11 @@ public class DriverController {
         driverService.changeStatus(value, id);
         return true;
     }
-
+    @GetMapping("/driver/NumInQueue")
+    public Integer getNumber(@RequestParam("driver_code") String driverCode){
+        int num=0;
+        Queue queue = queueService.getQueueByDriverCode(driverCode);
+        num=queue.getQueueNum();
+        return num;
+    }
 }

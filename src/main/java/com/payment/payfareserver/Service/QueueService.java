@@ -31,6 +31,9 @@ public class QueueService {
     public Queue getTopDriverInQueue(){
         return repository.findQueueByQueueNum(1);
     }
+    public Queue getQueueByDriverCode(String driverCode){
+        return repository.findQueueByDriverCode(driverCode);
+    }
     public long getCount() {
         return repository.count();
     }

@@ -27,5 +27,6 @@ public interface QueueRepository extends JpaRepository<Queue, Integer> {
 
     Queue findQueueByQueueNum(int queueNum);
 
-    Queue findQueueByDriverCode(int driverCode);
+    Queue findQueueByDriverCode(String driverCode);
+
 }

@@ -20,7 +20,6 @@ public class QueueController {
     TripService tripService;
     @Autowired
     private DriverService driverService;
-
     @Autowired
     private AdminService adminService;
     @Autowired
@@ -47,6 +46,7 @@ public class QueueController {
     public String deleteTop(@RequestParam("adminId") int adminId) {
         Queue topInQueue = queueService.getTopDriverInQueue();
         Driver driver = driverService.getDriverByDriverCode(topInQueue.getDriverCode());
+
         Car car = carService.getCarByCarCode(driver.getCar().getCarCode());
         Trip trip = new Trip();
         trip.setTraffic(car.getTraffic());
@@ -73,7 +73,7 @@ public class QueueController {
         newBlock.setNonce(blockDto.getNonce());
         newBlock.setTrip(tripService.save(trip));
         blockchainService.save(newBlock);
-
+        driverService.changeStatus(0,driver.getId());
         queueService.deleteTopFromQueue();
         if (queueService.getCount() >=1) {
             queueService.updateQueue();
