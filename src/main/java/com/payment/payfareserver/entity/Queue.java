@@ -12,7 +12,10 @@ public class Queue {
 
     @Column(name = "driver_code", nullable = false,unique = true)
     private String driverCode;
-
+    @Column(name = "driver_name", nullable = false,unique = true)
+    private String driverName;
+    @Column(name = "car_plate_num", nullable = false,unique = true)
+    private String carPlateNum;
     @Column(name = "queue_num", nullable = false)
     private Integer queueNum;
 
@@ -30,6 +33,22 @@ public class Queue {
 
     public void setDriverCode(String driverCode) {
         this.driverCode = driverCode;
+    }
+
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+
+    public String getCarPlateNum() {
+        return carPlateNum;
+    }
+
+    public void setCarPlateNum(String carPlateNum) {
+        this.carPlateNum = carPlateNum;
     }
 
     public Integer getQueueNum() {

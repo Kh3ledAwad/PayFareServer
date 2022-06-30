@@ -37,7 +37,10 @@ public class QueueController {
             Queue oldQueue = queueService.getLastDriverInQueue();
             numOfLastPerson = oldQueue.getQueueNum();
         }
+        Driver driver = driverService.getDriverByDriverCode(driverCode);
         queue.setDriverCode(driverCode);
+        queue.setDriverName(driver.getUser().getName());
+        queue.setCarPlateNum(driver.getCar().getCarPlateNum());
         queue.setQueueNum(numOfLastPerson + 1);
         return queueService.addToQueue(queue);
     }
