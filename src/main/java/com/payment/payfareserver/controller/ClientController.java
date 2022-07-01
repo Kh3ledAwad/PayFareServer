@@ -141,7 +141,9 @@ public class ClientController {
             String driverPhone=rs.getTrip().getDriver().getUser().getPhone();
             Double amountPay=rs.getAmountPay();
             LocalDateTime date = rs.getTrip().getDate();
-            tripsList.add(new ClientTrips(ridsHistoryId,carPlateNum,driverPhone,amountPay,date));
+            String from = rs.getTrip().getTraffic().getFrom();
+            String to = rs.getTrip().getTraffic().getTo();
+            tripsList.add(new ClientTrips(ridsHistoryId,carPlateNum,driverPhone,amountPay,date,from,to));
         }
        return new ResponseEntity<>(tripsList, HttpStatus.OK);
 

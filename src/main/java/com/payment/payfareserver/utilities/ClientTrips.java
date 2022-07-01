@@ -19,16 +19,23 @@ public class ClientTrips {
     private Double amountPay;
     @JsonProperty("date")
     private LocalDateTime date;
+    @JsonProperty("from")
+    private String from;
+    @JsonProperty("to")
+    private String to;
+
 
     public ClientTrips() {
     }
 
-    public ClientTrips(int ridsHistoryId, String carPlateNum, String driverPhone, Double amountPay, LocalDateTime date) {
+    public ClientTrips(int ridsHistoryId, String carPlateNum, String driverPhone, Double amountPay, LocalDateTime date, String from, String to) {
         this.ridsHistoryId = ridsHistoryId;
         this.carPlateNum = carPlateNum;
         this.driverPhone = driverPhone;
         this.amountPay = amountPay;
         this.date = date;
+        this.from = from;
+        this.to = to;
     }
 
     public int getRidsHistoryId() {
@@ -69,5 +76,21 @@ public class ClientTrips {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
 }
