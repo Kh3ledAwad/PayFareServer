@@ -65,6 +65,8 @@ public class UserController {
     @PostMapping("/user/login")
     public Optional<Object> login(@RequestBody UserDTO userDTO) {
         User user = userService.login(userDTO.getPhone(), userDTO.getPassword());
+        if(user==null)
+            return Optional.of("User Not Found");
         if (user.getType().getId().equals(3)) {
             return Optional.ofNullable(clientService.getClientByUserId(user.getId()));
         } else if (user.getType().getId().equals(2)) {

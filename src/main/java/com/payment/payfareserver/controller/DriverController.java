@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @CrossOrigin(origins = "*")
@@ -88,9 +89,10 @@ public class DriverController {
     }
     @GetMapping("/driver/NumInQueue")
     public Integer getNumber(@RequestParam("driver_code") String driverCode){
-        int num=0;
         Queue queue = queueService.getQueueByDriverCode(driverCode);
-        num=queue.getQueueNum();
-        return num;
+        if(queue!=null){
+            return queue.getQueueNum();
+        }
+        return 0;
     }
 }
